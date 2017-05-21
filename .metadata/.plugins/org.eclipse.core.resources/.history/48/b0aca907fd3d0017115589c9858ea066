@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.geek.yx.mapper.UserMapper">
+	<resultMap type="com.geek.yx.model.User" id="">
+	</resultMap>
+	<!-- 查询列表-->
+	<select id="selectIdPage" resultType="java.util.Map">
+		select 
+			user_id as userId,
+			user_name as userName,
+			phone,
+			email,
+			address,
+			avatar
+		from aas_user where phone = #{phone}
+	</select>
+</mapper>

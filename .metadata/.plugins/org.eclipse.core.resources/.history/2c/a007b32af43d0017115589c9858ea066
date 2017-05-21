@@ -1,0 +1,15 @@
+package com.geek.yx.core;
+
+import javax.servlet.ServletContextEvent;
+
+import com.geek.yx.common.core.listener.ServerListener;
+
+public class UserServerListener extends ServerListener{
+	/**
+	 * 复写父类的initilalize方法
+	 */
+	@Override
+	public void contextInitialized(ServletContextEvent contextEvent) {
+		super.contextInitialized(contextEvent);
+	}
+}

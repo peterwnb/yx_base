@@ -1,0 +1,13 @@
+package com.geek.yx.service;
+
+import com.geek.yx.common.core.base.BaseService;
+import com.geek.yx.model.User;
+
+/**
+ * 用户体系服务实现类
+ * @author lenovo
+ *
+ */
+public class UserService extends BaseService<User>{
+
+}

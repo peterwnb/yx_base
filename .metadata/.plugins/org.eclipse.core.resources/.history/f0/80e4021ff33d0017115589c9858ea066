@@ -1,0 +1,11 @@
+package com.geek.yx.model;
+
+import com.baomidou.mybatisplus.annotations.TableName;
+
+@TableName("aas_user")
+public class User {
+	private Long  userId;
+	
+	private String userName;
+	
+}

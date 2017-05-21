@@ -1,0 +1,7 @@
+package com.geek.yx.service;
+
+import com.geek.yx.common.core.base.BaseService;
+
+public class UserService extends BaseService<>{
+
+}

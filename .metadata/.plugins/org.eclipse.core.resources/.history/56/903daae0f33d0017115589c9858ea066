@@ -1,0 +1,17 @@
+package com.geek.yx.service;
+
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.stereotype.Service;
+
+import com.geek.yx.common.core.base.BaseService;
+import com.geek.yx.model.User;
+
+/**
+ * 用户体系服务实现类
+ * @author lenovo
+ */
+@Service
+@CacheConfig(cacheNames = "User")
+public class UserService extends BaseService<User>{
+
+}

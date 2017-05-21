@@ -1,0 +1,5 @@
+package com.geek.yx.provider;
+
+public interface IUserProvider extends BaseProvider{
+
+}

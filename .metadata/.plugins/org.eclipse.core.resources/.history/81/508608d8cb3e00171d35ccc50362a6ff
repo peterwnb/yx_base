@@ -1,0 +1,9 @@
+package com.geek.yx.model;
+
+import com.baomidou.mybatisplus.annotations.TableName;
+
+@TableName("group_member")
+@SuppressWarnings("serial")
+public class GroupMember extends BaseModel{
+	private Long groupId;
+}

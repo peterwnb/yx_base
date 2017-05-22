@@ -1,0 +1,36 @@
+package com.geek.yx.vo;
+
+import java.util.Map;
+
+public class BaseResponse extends ResultObj{
+	private Object data;
+	
+	public Object getData() {
+		return data;
+	}
+
+	public void setData(Object data) {
+		this.data = data;
+	}
+
+	public BaseResponse(){
+		setResultCode("0");
+	}
+	
+	public BaseResponse(String resultCode, String resultDesc, Object data) {
+		setResultCode(resultCode);
+		setResultDesc(resultDesc);
+		this.data = data;
+	}
+	
+	public BaseResponse(String resultCode, String resultDesc) {
+		setResultCode(resultCode);
+		setResultDesc(resultDesc);
+	}
+	
+	public BaseResponse(Map<String,Object> map) {
+		setResultCode((String) map.get("resultCode"));
+		setResultDesc((String) map.get("resultDesc"));
+	}
+	
+}

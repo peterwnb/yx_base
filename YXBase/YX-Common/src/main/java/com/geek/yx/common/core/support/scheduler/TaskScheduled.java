@@ -2,7 +2,7 @@ package com.geek.yx.common.core.support.scheduler;
 
 import java.util.Date;
 
-import com.geek.yx.common.core.base.BaseModel;
+import com.geek.yx.model.BaseModel;
 
 /**
  * 计划任务信息

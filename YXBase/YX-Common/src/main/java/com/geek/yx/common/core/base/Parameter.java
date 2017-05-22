@@ -6,6 +6,8 @@ import java.util.Map;
 
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.toolkit.IdWorker;
+import com.geek.yx.common.core.vo.ResultObj;
+import com.geek.yx.model.BaseModel;
 
 /**
  * @author Peter Chain
@@ -32,6 +34,8 @@ public class Parameter implements Serializable {
 			this.map = (Map<?, ?>) result;
 		} else if (result instanceof List<?>) {
 			this.list = (List<?>) result;
+		} else if(result instanceof ResultObj){
+			this.result = (ResultObj) result;
 		}
 	}
 
@@ -43,8 +47,16 @@ public class Parameter implements Serializable {
 	private Map<?, ?> map;
 	private Page<?> page;
 	private List<?> list;
+	private ResultObj result;
+    public ResultObj getResult() {
+		return result;
+	}
 
-    private final String no = "[" + IdWorker.getId() + "]";
+	public void setResult(ResultObj result) {
+		this.result = result;
+	}
+
+	private final String no = "[" + IdWorker.getId() + "]";
 
 	public String getService() {
 		return service;

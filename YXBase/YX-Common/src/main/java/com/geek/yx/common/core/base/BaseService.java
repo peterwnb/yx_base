@@ -16,11 +16,12 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.baomidou.mybatisplus.plugins.Page;
-import com.geek.yx.common.core.Constants;
+import com.geek.yx.common.Constants;
 import com.geek.yx.common.core.util.CacheUtil;
 import com.geek.yx.common.core.util.DataUtil;
 import com.geek.yx.common.core.util.ExceptionUtil;
 import com.geek.yx.common.core.util.InstanceUtil;
+import com.geek.yx.model.BaseModel;
 
 /**
  * 业务逻辑层基类<br/>

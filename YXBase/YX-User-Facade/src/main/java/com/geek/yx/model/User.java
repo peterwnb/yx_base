@@ -2,16 +2,15 @@ package com.geek.yx.model;
 
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
-import com.geek.yx.common.core.base.BaseModel;
 
 @TableName("aas_user")
 @SuppressWarnings("serial")
 public class User extends BaseModel {
-	@TableField("user_id")
-	private Long userId;
-
 	@TableField("user_name")
 	private String userName;
+	
+	@TableField("nick_name")
+	private String nickName;
 
 	@TableField("phone")
 	private String phone;
@@ -25,20 +24,20 @@ public class User extends BaseModel {
 	@TableField("avatar")
 	private String avatar;
 
-	public Long getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Long userId) {
-		this.userId = userId;
-	}
-
 	public String getUserName() {
 		return userName;
 	}
 
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+
+	public String getNickName() {
+		return nickName;
+	}
+
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
 	}
 
 	public String getPhone() {

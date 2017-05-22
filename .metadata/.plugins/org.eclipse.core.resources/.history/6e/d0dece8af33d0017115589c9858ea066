@@ -1,5 +1,0 @@
-package com.geek.yx.service;
-
-public class UserService extends BaseService<>{
-
-}

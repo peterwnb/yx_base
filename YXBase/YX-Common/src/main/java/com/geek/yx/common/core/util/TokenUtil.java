@@ -1,7 +1,7 @@
 package com.geek.yx.common.core.util;
 
 import com.alibaba.fastjson.JSON;
-import com.geek.yx.common.core.Constants;
+import com.geek.yx.common.Constants;
 import com.geek.yx.common.core.support.Token;
 
 public class TokenUtil {

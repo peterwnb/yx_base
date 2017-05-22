@@ -18,7 +18,7 @@ import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.web.util.WebUtils;
 
-import com.geek.yx.common.core.Constants;
+import com.geek.yx.common.Constants;
 
 /**
  * Web层辅助类

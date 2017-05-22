@@ -1,0 +1,44 @@
+package com.geek.yx.web;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.geek.yx.common.core.base.AbstractController;
+import com.geek.yx.common.core.base.Parameter;
+import com.geek.yx.common.core.support.Assert;
+import com.geek.yx.model.User;
+import com.geek.yx.provider.IUserProvider;
+import com.geek.yx.vo.BaseResponse;
+
+import io.swagger.annotations.Api;
+
+@RestController
+@Api(value = "用户信息接口", description = "用户接口")
+@RequestMapping(value = "/user")
+public class UserController extends AbstractController<IUserProvider>{
+
+	@Override
+	public String getService() {
+		return "userService";
+	}
+	
+	@GetMapping("/info/{phone}")
+	public Object queryUserByPhone(@PathVariable("phone")String phone){
+		Assert.isNotBlank(phone, "PHONE");
+		User user = new User();
+		user.setPhone(phone);
+		Parameter parameter = new Parameter(getService(), "queryByPhone").setModel(user);
+		User result  = (User)provider.execute(parameter).getModel();
+		return new BaseResponse("0", "Success", result);
+	}
+
+	@PostMapping("/newuser")
+	public Object createUser(@RequestBody User user){
+		Assert.isNotBlank(user.getPhone(), "PHONE");
+		Assert.isNotBlank(user.getUserName(), "USER_NAME");
+	}
+}

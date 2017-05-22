@@ -39,7 +39,7 @@
 		<property name="maxWaitMillis" value="${redis.maxWaitMillis}" />
 		<property name="testOnBorrow" value="true" />
 	</bean>
-	<bean id="jedisShardInfo" class="org.ibase4j.core.support.cache.jedis.JedisShardInfo">
+	<bean id="jedisShardInfo" class="com.geek.yx.common.core.support.cache.jedis.JedisShardInfo">
 		<constructor-arg index="0" value="${redis.host}" />
 		<constructor-arg index="1" value="${redis.port}" type="int" />
 		<property name="password" value="${redis.password}" />

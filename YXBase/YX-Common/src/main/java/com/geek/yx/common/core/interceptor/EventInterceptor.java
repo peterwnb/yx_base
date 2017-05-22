@@ -21,7 +21,7 @@ import com.geek.yx.common.core.base.Parameter;
 import com.geek.yx.common.core.util.DateUtil;
 import com.geek.yx.common.core.util.ExceptionUtil;
 import com.geek.yx.common.core.util.WebUtil;
-import com.geek.yx.common.model.SysEvent;
+import com.geek.yx.model.SysEvent;
 
 import cz.mallat.uasparser.OnlineUpdater;
 import cz.mallat.uasparser.UASparser;

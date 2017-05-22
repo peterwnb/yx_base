@@ -13,12 +13,12 @@ import org.quartz.JobExecutionException;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.alibaba.fastjson.JSON;
-import com.geek.yx.common.core.Constants.JOBSTATE;
+import com.geek.yx.common.Constants.JOBSTATE;
 import com.geek.yx.common.core.support.email.Email;
 import com.geek.yx.common.core.support.mq.QueueSender;
 import com.geek.yx.common.core.util.EmailUtil;
 import com.geek.yx.common.core.util.NativeUtil;
-import com.geek.yx.common.model.TaskFireLog;
+import com.geek.yx.model.TaskFireLog;
 
 /**
  * 调度监听器

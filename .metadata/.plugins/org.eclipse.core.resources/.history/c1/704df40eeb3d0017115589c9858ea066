@@ -1,7 +1,0 @@
-package com.geek.yx.core;
-
-import com.geek.yx.common.core.listener.ServerListener;
-
-public class UserServerListener extends ServerListener{
-
-}

@@ -1,0 +1,32 @@
+package com.geek.yx.common.core.vo;
+
+import java.io.Serializable;
+
+public class ResultObj implements Serializable{
+	private String resultCode;
+	private String resultDesc;
+	
+	public ResultObj(){
+		this(ResultCodeEnum.SUCCESS);
+	}
+	
+	public ResultObj(ResultCodeEnum rn){
+		this.resultCode = rn.getCode();
+		this.resultDesc = rn.getDesc();
+	}
+	
+	public String getResultCode() {
+		return resultCode;
+	}
+	public void setResultCode(String resultCode) {
+		this.resultCode = resultCode;
+	}
+	public String getResultDesc() {
+		return resultDesc;
+	}
+	public void setResultDesc(String resultDesc) {
+		this.resultDesc = resultDesc;
+	}
+	
+	
+}

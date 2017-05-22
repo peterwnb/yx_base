@@ -1,0 +1,12 @@
+package com.geek.yx.model;
+
+import com.baomidou.mybatisplus.annotations.TableName;
+
+@TableName("aas_user")
+@SuppressWarnings("serial")
+public class UserGroup extends BaseModel{
+	private String groupName;
+	private String groupAvatar;
+	private Integer type;
+	
+}

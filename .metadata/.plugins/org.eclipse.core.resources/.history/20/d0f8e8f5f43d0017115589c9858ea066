@@ -1,7 +1,0 @@
-package com.geek.yx.mapper;
-
-import com.geek.yx.model.User;
-
-public interface UserMapper {
-	User queryByphone(@Param("phone")String phone);
-}

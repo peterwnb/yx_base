@@ -3,7 +3,7 @@
  */
 package com.geek.yx.common.core.support.login;
 
-import com.geek.yx.common.core.base.BaseModel;
+import com.geek.yx.model.BaseModel;
 
 /**
  * @author Peter Chain

@@ -1,5 +1,0 @@
-package com.geek.yx.mapper;
-
-public interface UserMapper {
-
-}

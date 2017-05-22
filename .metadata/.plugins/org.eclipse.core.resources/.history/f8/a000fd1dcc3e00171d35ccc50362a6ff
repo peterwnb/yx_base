@@ -1,0 +1,8 @@
+package com.geek.yx.mapper;
+
+import com.geek.yx.common.core.base.BaseMapper;
+import com.geek.yx.model.GroupMember;
+
+public interface GroupMemberMapper extends BaseMapper<GroupMember>{
+
+}

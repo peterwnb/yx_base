@@ -1,0 +1,15 @@
+package com.geek.yx.vo;
+
+public class BaseResponse extends ResultObj{
+	public BaseResponse(){
+		setCode("0");
+		setMsg("success");
+	}
+	
+	public BaseResponse(boolean success, String message, Object data) {
+		super();
+		this.success = success;
+		this.message = message;
+		this.data = data;
+	}
+}

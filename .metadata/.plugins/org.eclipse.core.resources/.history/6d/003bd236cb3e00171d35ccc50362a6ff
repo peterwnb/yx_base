@@ -1,0 +1,83 @@
+package com.geek.yx.service;
+
+import java.util.Date;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.stereotype.Service;
+
+import com.geek.yx.common.Constants;
+import com.geek.yx.common.Constants.ENABLE_STAT;
+import com.geek.yx.common.Constants.GROUP_TYPE;
+import com.geek.yx.common.core.base.BaseService;
+import com.geek.yx.common.core.vo.ResultCodeEnum;
+import com.geek.yx.common.core.vo.ResultObj;
+import com.geek.yx.mapper.UserGroupMapper;
+import com.geek.yx.mapper.UserMapper;
+import com.geek.yx.model.User;
+import com.geek.yx.model.UserGroup;
+
+/**
+ * 用户体系服务实现类
+ * @author lenovo
+ */
+@Service("userService")
+@CacheConfig(cacheNames = "User")
+public class UserService extends BaseService<User>{
+	@Autowired
+	private UserMapper userMapper;
+	
+	@Autowired
+	private UserGroupMapper userGroupMapper;
+	
+	public User queryByPhone(User user){
+		return userMapper.queryByPhone(user.getPhone());
+	}
+	
+	/**
+	 * 创建用户服务
+	 * @return
+	 */
+	public ResultObj createUser(User user){
+		//判断手机号是否重复
+		User dbUser = userMapper.queryByPhone(user.getPhone());
+		if(null != dbUser){
+			return new ResultObj(ResultCodeEnum.USER_PHONE_REPEAT);
+		}
+		user.setCreateTime(new Date());
+		user.setUpdateTime(new Date());
+		userMapper.insert(user);
+		//创建默认群组
+		UserGroup group = new UserGroup();
+		group.setCreateTime(new Date());
+		group.setUpdateTime(new Date());
+		group.setGroupAvatar(Constants.DEFAULT_GROUP_AVATAR);
+		group.setGroupName(Constants.DEFAULT_GROUP_NAME);
+		group.setUserId(user.getId());
+		group.setRemark("默认群组");
+		group.setEnable(ENABLE_STAT.ENABLE);
+		group.setType(GROUP_TYPE.NORMAL);
+		return new ResultObj();
+	}
+	
+	/**
+	 * 创建群组
+	 * @return
+	 */
+	public ResultObj createGroup(UserGroup group){
+		UserGroup dbGroup = userGroupMapper.selectByIdAndName(group);
+		if(null != dbGroup){
+			return new ResultObj(ResultCodeEnum.USER_GROU_NAME_REPEAT);
+		}
+		userGroupMapper.insert(group);
+		return new ResultObj();
+	}
+	
+	public void init() {
+		/*List<Long> list = ((UserMapper) mapper).selectIdPage(Collections.<String, Object>emptyMap());
+		for (Long id : list) {
+			CacheUtil.getCache().set(getCacheKey(id), mapper.selectById(id));
+		}*/
+		System.out.println("init user cache...");
+	}
+}

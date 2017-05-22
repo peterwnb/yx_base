@@ -6,7 +6,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 
-import com.geek.yx.common.core.Constants;
+import com.geek.yx.common.Constants;
 import com.geek.yx.common.core.util.CacheUtil;
 
 @Service

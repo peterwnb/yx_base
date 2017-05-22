@@ -1,0 +1,46 @@
+package com.geek.yx.model;
+
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableName;
+
+@TableName("user_group")
+@SuppressWarnings("serial")
+public class UserGroup extends BaseModel{
+	@TableField("user_id")
+	private Long userId;
+	
+	@TableField("group_name")
+	private String groupName;
+	
+	@TableField("group_avatar")
+	private String groupAvatar;
+	
+	@TableField("type")
+	private Integer type;
+	
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	public String getGroupName() {
+		return groupName;
+	}
+	public void setGroupName(String groupName) {
+		this.groupName = groupName;
+	}
+	public String getGroupAvatar() {
+		return groupAvatar;
+	}
+	public void setGroupAvatar(String groupAvatar) {
+		this.groupAvatar = groupAvatar;
+	}
+	public Integer getType() {
+		return type;
+	}
+	public void setType(Integer type) {
+		this.type = type;
+	}
+	
+}

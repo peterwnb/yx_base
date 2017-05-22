@@ -9,6 +9,8 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
+import com.geek.yx.model.BaseModel;
+
 /**
  * 
  * @author Peter Chain

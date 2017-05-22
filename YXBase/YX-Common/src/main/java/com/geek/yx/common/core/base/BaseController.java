@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.baomidou.mybatisplus.plugins.Page;
-import com.geek.yx.common.core.Constants;
+import com.geek.yx.common.Constants;
 import com.geek.yx.common.core.exception.BaseException;
 import com.geek.yx.common.core.exception.IllegalParameterException;
 import com.geek.yx.common.core.support.HttpCode;
@@ -103,12 +103,12 @@ public abstract class BaseController {
 		} else if (ex instanceof IllegalArgumentException) {
 			new IllegalParameterException(ex.getMessage()).handler(modelMap);
 		} else if (ex instanceof UnauthorizedException) {
-			modelMap.put("httpCode", HttpCode.FORBIDDEN.value());
-			modelMap.put("msg", StringUtils.defaultIfBlank(ex.getMessage(), HttpCode.FORBIDDEN.msg()));
+			modelMap.put("resultCode", HttpCode.FORBIDDEN.value());
+			modelMap.put("resultDesc", StringUtils.defaultIfBlank(ex.getMessage(), HttpCode.FORBIDDEN.msg()));
 		} else {
-			modelMap.put("httpCode", HttpCode.INTERNAL_SERVER_ERROR.value());
+			modelMap.put("resultCode", HttpCode.INTERNAL_SERVER_ERROR.value());
 			String msg = StringUtils.defaultIfBlank(ex.getMessage(), HttpCode.INTERNAL_SERVER_ERROR.msg());
-			modelMap.put("msg", msg.length() > 100 ? "系统走神了,请稍候再试." : msg);
+			modelMap.put("resultDesc", msg.length() > 100 ? "系统走神了,请稍候再试." : msg);
 		}
 		response.setContentType("application/json;charset=UTF-8");
 		modelMap.put("timestamp", System.currentTimeMillis());

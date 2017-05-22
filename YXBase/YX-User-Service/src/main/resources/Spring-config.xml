@@ -29,7 +29,7 @@
 		</property>
 	</bean>
 	<!-- 扫描注解 -->
-	<context:component-scan base-package="org.ibase4j">
+	<context:component-scan base-package="com.geek.yx">
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
 	<!-- 引入SPRING配置文件 -->

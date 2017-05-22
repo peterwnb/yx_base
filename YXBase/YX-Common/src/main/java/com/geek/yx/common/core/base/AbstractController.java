@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 
 import com.baomidou.mybatisplus.plugins.Page;
+import com.geek.yx.model.BaseModel;
 
 /**
  * 控制器基类

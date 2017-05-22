@@ -1,0 +1,7 @@
+package com.geek.yx.vo;
+
+public class BaseResponse extends ResultObj{
+	public BaseResponse(){
+		setCode("0");
+	}
+}

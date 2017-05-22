@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.geek.yx.common.core.Constants;
+import com.geek.yx.common.Constants;
 import com.geek.yx.common.core.support.HttpCode;
 
 /**

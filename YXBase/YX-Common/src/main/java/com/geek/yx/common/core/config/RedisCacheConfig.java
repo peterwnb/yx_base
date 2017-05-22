@@ -18,7 +18,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.alibaba.fastjson.JSON;
-import com.geek.yx.common.core.Constants;
+import com.geek.yx.common.Constants;
 
 /**
  * Redis缓存配置

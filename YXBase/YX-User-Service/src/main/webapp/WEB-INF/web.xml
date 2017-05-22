@@ -3,10 +3,10 @@
 	xmlns="http://java.sun.com/xml/ns/javaee"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	version="3.0">
-	<display-name>iBase4J-SYS-Service</display-name>
+	<display-name>YX-User-Service</display-name>
 	<context-param>
 		<param-name>webAppRootKey</param-name>
-		<param-value>iBase4J-SYS-Service</param-value>
+		<param-value>YX-User-Service</param-value>
 	</context-param>
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
@@ -42,6 +42,6 @@
 		<listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
 	</listener>
 	<listener>
-		<listener-class>org.ibase4j.core.SysServerListener</listener-class>
+		<listener-class>com.geek.yx.core.UserServerListener</listener-class>
 	</listener>
 </web-app>

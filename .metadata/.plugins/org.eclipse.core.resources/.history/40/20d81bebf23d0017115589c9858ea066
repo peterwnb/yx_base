@@ -1,9 +1,0 @@
-package com.geek.yx.model;
-
-import com.baomidou.mybatisplus.annotations.TableName;
-
-@TableName("sys_dept")
-@SuppressWarnings("serial")
-public class User {
-	
-}

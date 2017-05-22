@@ -12,7 +12,7 @@ import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.CacheException;
 import org.apache.shiro.cache.CacheManager;
 
-import com.geek.yx.common.core.Constants;
+import com.geek.yx.common.Constants;
 
 /**
  * 

@@ -6,7 +6,6 @@ import org.springframework.web.context.ContextLoader;
 import org.springframework.web.context.WebApplicationContext;
 
 import com.geek.yx.common.core.listener.ServerListener;
-import com.geek.yx.service.UserCacheService;
 import com.geek.yx.service.UserService;
 
 public class UserServerListener extends ServerListener{
@@ -17,7 +16,7 @@ public class UserServerListener extends ServerListener{
 	public void contextInitialized(ServletContextEvent contextEvent) {
 		
 		WebApplicationContext context = ContextLoader.getCurrentWebApplicationContext();
-		context.getBean(UserCacheService.class).flush();
+		//context.getBean(UserCacheService.class).flush();
 		context.getBean(UserService.class).init();
 		
 		super.contextInitialized(contextEvent);

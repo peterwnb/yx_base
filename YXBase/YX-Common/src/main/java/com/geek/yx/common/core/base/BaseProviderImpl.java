@@ -11,8 +11,9 @@ import org.springframework.context.ApplicationContextAware;
 
 import com.alibaba.fastjson.JSON;
 import com.esotericsoftware.reflectasm.MethodAccess;
-import com.geek.yx.common.core.Constants;
+import com.geek.yx.common.Constants;
 import com.geek.yx.common.core.util.ExceptionUtil;
+import com.geek.yx.model.BaseModel;
 
 public abstract class BaseProviderImpl implements ApplicationContextAware, BaseProvider {
     protected static Logger logger = LogManager.getLogger();

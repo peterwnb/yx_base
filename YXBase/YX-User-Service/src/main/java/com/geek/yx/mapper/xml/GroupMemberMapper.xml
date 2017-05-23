@@ -7,10 +7,12 @@
 			u.nick_name as nickName,
 			u.phone as phone,
 			u.email as email,
-			u.avatar as avatar
+			u.avatar as avatar,
+			count(m.id_) as num,
+			m.user_type as userType
 		from group_member m 
 		left join  aas_user  u
 		on u.id_ = m.user_id
-		where group_id = #{groupId}
+		where group_id = #{groupId} and join_status = 1
 	</select>
 </mapper>

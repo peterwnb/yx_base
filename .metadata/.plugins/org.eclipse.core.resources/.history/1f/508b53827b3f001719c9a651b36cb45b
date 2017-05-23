@@ -1,0 +1,19 @@
+package com.geek.yx.mapper;
+
+import com.geek.yx.common.core.base.BaseMapper;
+import com.geek.yx.model.Friend;
+
+public interface FriendMapper extends BaseMapper<Friend> {
+	/**
+	 * 新增邀请好友信息
+	 * @return
+	 */
+	public int addInvateInfo();
+	
+	/**
+	 * 查询加好友信息
+	 * @param friend
+	 * @return
+	 */
+	Friend queryInviteInfo(Friend friend);
+}

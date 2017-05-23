@@ -1,0 +1,27 @@
+package com.geek.yx.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.stereotype.Service;
+
+import com.geek.yx.mapper.GroupMemberMapper;
+import com.geek.yx.mapper.UserGroupMapper;
+import com.geek.yx.mapper.UserMapper;
+
+/**
+ * 用户群组服务实现类
+ * @author lenovo
+ */
+@Service("groupService")
+@CacheConfig(cacheNames = "group")
+public class GroupService {
+	@Autowired
+	private UserMapper userMapper;
+	
+	@Autowired
+	private UserGroupMapper userGroupMapper;
+	
+	@Autowired
+	private GroupMemberMapper memberMapper;
+
+}

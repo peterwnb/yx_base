@@ -1,0 +1,15 @@
+package com.geek.yx.mapper;
+
+import org.apache.ibatis.annotations.Param;
+
+import com.geek.yx.common.core.base.BaseMapper;
+import com.geek.yx.model.Friend;
+import com.geek.yx.model.User;
+
+public interface FriendMapper extends BaseMapper<Friend> {
+	/**
+	 * 新增邀请好友信息
+	 * @return
+	 */
+	public int addInvateInfo();
+}

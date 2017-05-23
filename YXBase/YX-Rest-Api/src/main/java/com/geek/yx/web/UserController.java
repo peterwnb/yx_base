@@ -12,9 +12,7 @@ import com.geek.yx.common.core.base.Parameter;
 import com.geek.yx.common.core.support.Assert;
 import com.geek.yx.common.core.vo.BaseResponse;
 import com.geek.yx.common.core.vo.ResultCodeEnum;
-import com.geek.yx.model.GroupMember;
 import com.geek.yx.model.User;
-import com.geek.yx.model.UserGroup;
 import com.geek.yx.provider.IUserProvider;
 
 import io.swagger.annotations.Api;
@@ -50,42 +48,5 @@ public class UserController extends AbstractController<IUserProvider>{
 		Parameter parameter = new Parameter(getService(), "createUser").setModel(user);
 		Parameter result = provider.execute(parameter);
 		return new BaseResponse(result.getResult());
-	}
-	
-	@PostMapping("/group/create")
-	public Object createGroup(@RequestBody UserGroup group){
-		Assert.isNotBlank(group.getGroupName(), "GroupName");
-		Parameter parameter = new Parameter(getService(), "createGroup").setModel(group);
-		Parameter result = provider.execute(parameter);
-		return new BaseResponse(result.getResult());
-	}
-	
-	/**
-	 * 获取用户的群组列表
-	 * @param userId
-	 * @return
-	 */
-	@GetMapping("/group/{userId}")
-	public Object getGroupList(@PathVariable("userId")String userId){
-		Assert.isNotBlank(userId, "USERID");
-		UserGroup group = new UserGroup();
-		group.setUserId(Long.parseLong(userId));
-		Parameter parameter = new Parameter(getService(), "getGroups").setModel(group);
-		Parameter result = provider.execute(parameter);
-		return new BaseResponse(ResultCodeEnum.SUCCESS,result.getList());
-	}
-	
-	/**
-	 * 获取群组内成员列表
-	 * @return
-	 */
-	@GetMapping("/group_member/{groupId}")
-	public Object getGroupMembers(@PathVariable("groupId")String groupId){
-		Assert.isNotBlank(groupId, "groupId");
-		GroupMember member = new GroupMember();
-		member.setGroupId(Long.parseLong(groupId));
-		Parameter parameter = new Parameter(getService(), "getGroupMembers").setModel(member);
-		Parameter result = provider.execute(parameter);
-		return new BaseResponse(ResultCodeEnum.SUCCESS,result.getList());
 	}
 }

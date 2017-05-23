@@ -1,0 +1,18 @@
+package com.geek.yx.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.stereotype.Service;
+
+import com.geek.yx.mapper.FriendMapper;
+
+/**
+ * 用户好友服务实现类
+ * @author lenovo
+ */
+@Service("friendService")
+@CacheConfig(cacheNames = "friend")
+public class FriendService {
+	@Autowired
+	private FriendMapper friemdMapper; 
+}

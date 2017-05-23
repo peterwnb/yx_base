@@ -1,0 +1,12 @@
+package com.geek.yx.model;
+
+import com.baomidou.mybatisplus.annotations.TableName;
+
+@TableName("user_friend")
+@SuppressWarnings("serial")
+public class Friend extends BaseModel{
+	private Long userId;
+	private Long friendId;
+	private Integer status;  //好友状态
+	
+}

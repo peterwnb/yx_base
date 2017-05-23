@@ -1,5 +1,7 @@
 package com.geek.yx.model;
 
+import java.util.Date;
+
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
 
@@ -11,7 +13,16 @@ public class User extends BaseModel {
 	
 	@TableField("nick_name")
 	private String nickName;
+	
+	@TableField("gender")
+	private Integer gender;
 
+	@TableField("signature")
+	private String signature;
+	
+	@TableField("birthday")
+	private Date birthday;
+	
 	@TableField("phone")
 	private String phone;
 
@@ -23,6 +34,22 @@ public class User extends BaseModel {
 
 	@TableField("avatar")
 	private String avatar;
+
+	public String getSignature() {
+		return signature;
+	}
+
+	public void setSignature(String signature) {
+		this.signature = signature;
+	}
+
+	public Date getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
+	}
 
 	public String getUserName() {
 		return userName;
@@ -38,6 +65,14 @@ public class User extends BaseModel {
 
 	public void setNickName(String nickName) {
 		this.nickName = nickName;
+	}
+
+	public Integer getGender() {
+		return gender;
+	}
+
+	public void setGender(Integer gender) {
+		this.gender = gender;
 	}
 
 	public String getPhone() {

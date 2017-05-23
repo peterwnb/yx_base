@@ -9,6 +9,8 @@ public enum ResultCodeEnum
     SUCCESS("0", "操作成功"),
     USER_PHONE_REPEAT("USER_401001","手机号重复"),
     USER_GROU_NAME_REPEAT("USER_401002","群组名重复"),
+    USER_ADD_FRIEND_REPEAT("USER_401003","对方已经是你的好友，请不要重复添加"),
+    USER_INVITE_EXPIRED("USER_401004","加好友邀请不存在"),
     
     
     USER_NOT_FOUND("USER_404001","用户不存在"),

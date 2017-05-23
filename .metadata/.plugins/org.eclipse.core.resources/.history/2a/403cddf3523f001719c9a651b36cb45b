@@ -1,0 +1,14 @@
+package com.geek.yx.service;
+
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.stereotype.Service;
+
+/**
+ * 用户群组服务实现类
+ * @author lenovo
+ */
+@Service("groupService")
+@CacheConfig(cacheNames = "User")
+public class GroupService {
+
+}

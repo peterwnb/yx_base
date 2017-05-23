@@ -43,7 +43,7 @@ public interface Constants {
     
     public static final String DEFAULT_GROUP_NAME = "默认群组";
     public static final String DEFAULT_GROUP_AVATAR = "default.png";
-
+    
     /** 日志表状态 */
     public interface JOBSTATE {
         /**
@@ -84,5 +84,14 @@ public interface Constants {
     public interface GROUP_JOIN_STATUS{
     	public static final Integer PASSED = 1;
     	public static final Integer DEFAULT = 0;
+    }
+    
+    public interface FRIEND_STATUS{
+    	public static final Integer AGREE = 1;   //同意加好友
+    	public static final Integer DEGREE = -1; //不同意加好友
+    }
+    
+    public interface MQ_NAME{
+    	public static final String INVITE_MSG = "USER_INVITE_MSG";
     }
 }

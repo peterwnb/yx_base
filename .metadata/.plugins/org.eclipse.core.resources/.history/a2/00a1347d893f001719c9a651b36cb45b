@@ -1,0 +1,14 @@
+package com.geek.yx.service;
+
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.stereotype.Service;
+
+/**
+ * 用户好友服务实现类
+ * @author lenovo
+ */
+@Service("friendService")
+@CacheConfig(cacheNames = "friend")
+public class FriendService {
+	public 
+}

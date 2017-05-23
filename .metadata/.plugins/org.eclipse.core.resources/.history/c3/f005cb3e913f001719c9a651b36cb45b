@@ -1,0 +1,23 @@
+package com.geek.yx.web;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.geek.yx.common.core.base.AbstractController;
+import com.geek.yx.provider.IUserProvider;
+
+import io.swagger.annotations.Api;
+
+@RestController
+@Api(value = "好友操作信息接口", description = "用户接口")
+@RequestMapping(value = "/user")
+public class FriendController extends AbstractController<IUserProvider>{
+
+	@Override
+	public String getService() {
+		return "friendService";
+	}
+	
+	
+
+}

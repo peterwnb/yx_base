@@ -1,0 +1,13 @@
+package com.geek.yx.web;
+
+import com.geek.yx.common.core.base.AbstractController;
+import com.geek.yx.provider.IUserProvider;
+
+public class GroupController extends AbstractController<IUserProvider>{
+
+	@Override
+	public String getService() {
+		return null;
+	}
+
+}

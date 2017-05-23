@@ -1,0 +1,38 @@
+package com.geek.yx.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.geek.yx.common.core.base.BaseService;
+import com.geek.yx.common.core.vo.ResultCodeEnum;
+import com.geek.yx.common.core.vo.ResultObj;
+import com.geek.yx.mapper.FriendMapper;
+import com.geek.yx.model.Friend;
+
+/**
+ * 用户好友服务实现类
+ * @author lenovo
+ */
+@Service("friendService")
+@CacheConfig(cacheNames = "friend")
+public class FriendService extends BaseService<Friend>{
+	@Autowired
+	private FriendMapper friemdMapper;
+	
+	/**
+	 * 新增加好友邀请
+	 * @return
+	 */
+	@Transactional
+	public ResultObj addInviteInfo(Friend friend){
+		//判断手机号是否重复
+		Friend dbUser = friemdMapper.queryInviteInfo(friend);
+		if(null != dbUser){
+			return new ResultObj(ResultCodeEnum.USER_ADD_FRIEND_REPEAT);
+		}
+		friemdMapper.insert(friend);
+		return new ResultObj();
+	}
+}

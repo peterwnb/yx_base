@@ -1,8 +1,6 @@
 package com.geek.yx.service;
 
 import java.util.Date;
-import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
@@ -84,49 +82,6 @@ public class UserService extends BaseService<User>{
 		member.setGroupId(group.getId());
 		memberMapper.insert(member);
 		return new ResultObj();
-	}
-	
-	/**
-	 * 创建群组
-	 * @param UserGroup 用户群组实体
-	 * @return
-	 */
-	public ResultObj createGroup(UserGroup group){
-		UserGroup dbGroup = userGroupMapper.selectByIdAndName(group);
-		if(null != dbGroup){
-			return new ResultObj(ResultCodeEnum.USER_GROU_NAME_REPEAT);
-		}
-		//插入群组信息
-		Date date = new Date();
-		group.setCreateTime(date);
-		group.setEnable(ENABLE_STAT.ENABLE);
-		group.setType(GROUP_TYPE.NORMAL);
-		group.setUpdateTime(date);
-		userGroupMapper.insert(group);
-		
-		//插入群组成员
-		GroupMember member = new GroupMember();
-		member.setCreateTime(date);
-		member.setUpdateTime(date);
-		member.setUserType(GROUP_MEMBER_TYPE.CREATOR);
-		member.setUserId(group.getUserId());
-		member.setJoinStatus(GROUP_JOIN_STATUS.PASSED);
-		member.setGroupId(group.getId());
-		memberMapper.insert(member);
-		
-		return new ResultObj();
-	}
-	
-	public List<UserGroup> getGroups(UserGroup group){
-		return userGroupMapper.selectByUserId(group.getUserId());
-	}
-	
-	/**
-	 * 获取群组成员列表
-	 * @return
-	 */
-	public List<Map<String,Object>> getGroupMembers(GroupMember member){
-		return memberMapper.getGroupMembers(member.getGroupId());
 	}
 	
 	public void init() {

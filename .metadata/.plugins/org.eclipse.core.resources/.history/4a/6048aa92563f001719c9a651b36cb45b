@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.geek.yx.mapper.GroupMemberMapper">
+	<select id="getGroupMembers" resultType="java.util.Map" parameterType="java.lang.Long">
+		select 
+			m.id_ as memberId,
+			u.nick_name as nickName,
+			u.phone as phone,
+			u.email as email,
+			u.avatar as avatar,
+			count(m.id_) as num
+		from group_member m 
+		left join  aas_user  u
+		on u.id_ = m.user_id
+		where group_id = #{groupId}
+	</select>
+</mapper>

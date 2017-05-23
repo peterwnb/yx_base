@@ -1,0 +1,29 @@
+package com.geek.yx.mapper;
+
+import java.util.List;
+import java.util.Map;
+
+import com.geek.yx.common.core.base.BaseMapper;
+import com.geek.yx.model.Friend;
+
+public interface FriendMapper extends BaseMapper<Friend> {
+	/**
+	 * 查询加好友信息
+	 * @param friend
+	 * @return
+	 */
+	Friend queryInviteInfo(Friend friend);
+	
+	/**
+	 * 更新加好友邀请为
+	 * @param friend
+	 * @return
+	 */
+	int updateInviteStatus(Friend friend);
+	
+	/**
+	 * 发现新的好友
+	 * @return
+	 */
+	List<Map<String,Object>> queryNew(Long userId);
+}

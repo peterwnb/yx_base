@@ -15,6 +15,7 @@ import org.springframework.jms.core.MessageCreator;
  * @author Peter Chain
  * @version 2016年5月20日 下午3:19:19
  */
+//@Component("queueSender")
 public class QueueSender {
 	@Autowired
 	@Qualifier("jmsQueueTemplate")

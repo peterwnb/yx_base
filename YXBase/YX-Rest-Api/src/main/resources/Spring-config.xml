@@ -29,6 +29,7 @@
 	<context:component-scan base-package="com.geek.yx">
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 		<context:exclude-filter type="annotation" expression="org.springframework.cache.annotation.EnableCaching" />
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Component" />
 	</context:component-scan>
 	<!-- dubbo -->
 	<dubbo:reference id="userProvider" interface="com.geek.yx.provider.IUserProvider" check="false" />

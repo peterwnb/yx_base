@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.geek.yx.mapper.UserMapper">
+	<resultMap type="com.geek.yx.model.User" id="userMap">
+		<result column="id_" property="id"/>
+		<result column="user_name" property="userName"/>
+		<result column="nick_name" property="nickName"/>
+		<result column="gender" property="gender"/>
+		
+		<result column="signature" property="signature"/>
+		<result column="gender" property="gender"/>
+		
+		<result column="phone" property="phone"/>
+		<result column="email" property="email"/>
+		<result column="address" property="address"/>
+		<result column="avatar" property="avatar"/>
+	</resultMap>
+	<!-- 查询列表-->
+	<select id="queryByPhone" resultMap="userMap">
+		select 
+			id_,
+			user_name,
+			phone,
+			email,
+			address,
+			avatar
+		from aas_user where phone = #{phone}
+	</select>
+</mapper>

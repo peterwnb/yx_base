@@ -6,7 +6,7 @@
 		<artifactId>YXBase</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>YX_Account_Service</artifactId>
+	<artifactId>YX-Account-Service</artifactId>
 
 	<packaging>war</packaging>
 
@@ -43,7 +43,7 @@
 		
 		<dependency>
 			<groupId>com.geek.yx</groupId>
-			<artifactId>YX_Account_Facade</artifactId>
+			<artifactId>YX-Account-Facade</artifactId>
 			<version>${project.version}</version>
 			<exclusions>
 				<exclusion>

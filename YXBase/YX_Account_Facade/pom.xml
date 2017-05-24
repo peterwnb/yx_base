@@ -5,7 +5,7 @@
     <artifactId>YXBase</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <artifactId>YX_Account_Facade</artifactId>
+  <artifactId>YX-Account-Facade</artifactId>
   
   <dependencies>
 		<dependency>

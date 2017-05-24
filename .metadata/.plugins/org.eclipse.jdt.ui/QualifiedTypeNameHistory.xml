@@ -11,7 +11,6 @@
 <fullyQualifiedTypeName name="com.geek.yx.common.core.util.PropertiesUtil"/>
 <fullyQualifiedTypeName name="com.geek.yx.common.core.exception.LoginException"/>
 <fullyQualifiedTypeName name="com.geek.yx.common.core.config.Resources"/>
-<fullyQualifiedTypeName name="com.geek.yx.common.core.support.mq.QueueSender"/>
 <fullyQualifiedTypeName name="com.geek.yx.common.core.util.DataUtil"/>
 <fullyQualifiedTypeName name="com.geek.yx.common.core.support.scheduler.job.StatefulJob"/>
 <fullyQualifiedTypeName name="com.geek.yx.common.core.support.security.Hex"/>
@@ -35,11 +34,8 @@
 <fullyQualifiedTypeName name="com.geek.yx.common.core.vo.ResultObj"/>
 <fullyQualifiedTypeName name="com.geek.yx.common.core.vo.ResultCodeEnum"/>
 <fullyQualifiedTypeName name="java.io.Serializable"/>
-<fullyQualifiedTypeName name="java.util.Date"/>
 <fullyQualifiedTypeName name="com.geek.yx.common.core.util.DateUtil"/>
 <fullyQualifiedTypeName name="com.geek.yx.mapper.UserGroupMapper"/>
-<fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
-<fullyQualifiedTypeName name="com.geek.yx.common.Constants"/>
 <fullyQualifiedTypeName name="com.geek.yx.common.Constants.ENABLE_STAT"/>
 <fullyQualifiedTypeName name="com.geek.yx.common.Constants.GROUP_TYPE"/>
 <fullyQualifiedTypeName name="com.geek.yx.model.BaseModel"/>
@@ -48,8 +44,16 @@
 <fullyQualifiedTypeName name="com.geek.yx.common.Constants.GROUP_MEMBER_TYPE"/>
 <fullyQualifiedTypeName name="com.geek.yx.common.Constants.GROUP_JOIN_STATUS"/>
 <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Param"/>
-<fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
-<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
 <fullyQualifiedTypeName name="com.geek.yx.model.GroupMember"/>
+<fullyQualifiedTypeName name="com.geek.yx.common.Constants"/>
+<fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+<fullyQualifiedTypeName name="com.geek.yx.common.Constants.FRIEND_STATUS"/>
+<fullyQualifiedTypeName name="com.geek.yx.common.core.support.mq.QueueSender"/>
+<fullyQualifiedTypeName name="com.geek.yx.common.Constants.MQ_NAME"/>
+<fullyQualifiedTypeName name="org.springframework.stereotype.Component"/>
+<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PutMapping"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
 </qualifiedTypeNameHistroy>

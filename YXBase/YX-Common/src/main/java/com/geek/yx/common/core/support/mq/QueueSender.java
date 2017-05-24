@@ -31,6 +31,7 @@ public class QueueSender {
 		jmsTemplate.send(queueName, new MessageCreator() {
 			public Message createMessage(Session session) throws JMSException {
 				return session.createObjectMessage(message);
+				//return session.createTextMessage(message);
 			}
 		});
 	}

@@ -1,5 +1,6 @@
 package com.geek.yx.web;
 
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -68,12 +69,26 @@ public class FriendController extends AbstractController<IUserProvider>{
 	 * 发现新的好友
 	 * @return
 	 */
-	@PutMapping("/{userId}/newer")
-	public Object replyInvite(@PathVariable("userId")String userId){
+	@GetMapping("/{userId}/newer")
+	public Object queryNewFriend(@PathVariable("userId")String userId){
 		Assert.isNotBlank(userId, "userId");
 		Friend friend = new Friend();
 		friend.setUserId(Long.parseLong(userId));
 		Parameter parameter = new Parameter(getService(), "queryNewer").setModel(friend);
+		Parameter result = provider.execute(parameter);
+		return new BaseResponse(ResultCodeEnum.SUCCESS,result.getList());
+	}
+	
+	/**
+	 * 获取好友列表
+	 * @return
+	 */
+	@GetMapping("/list/{userId}")
+	public Object getFriendList(@PathVariable("userId")String userId){
+		Assert.isNotBlank(userId, "userId");
+		Friend friend = new Friend();
+		friend.setUserId(Long.parseLong(userId));
+		Parameter parameter = new Parameter(getService(), "getFriendList").setModel(friend);
 		Parameter result = provider.execute(parameter);
 		return new BaseResponse(ResultCodeEnum.SUCCESS,result.getList());
 	}

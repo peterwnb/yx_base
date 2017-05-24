@@ -1,0 +1,5 @@
+package com.geek.yx.common.core.support.mq.msg;
+
+public class InvitaMsg {
+
+}

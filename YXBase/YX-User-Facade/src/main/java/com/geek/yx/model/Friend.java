@@ -12,7 +12,7 @@ public class Friend extends BaseModel{
 	@TableField("friend_id") //好友ID
 	private Long friendId;
 	
-	@TableField("status")
+	@TableField("status_")
 	private Integer status;  //好友状态
 	public Long getUserId() {
 		return userId;

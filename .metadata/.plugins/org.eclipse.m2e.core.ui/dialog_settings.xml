@@ -7,9 +7,8 @@
 		<list key="name">
 		</list>
 		<list key="artifactId">
-			<item value="YX-Rest-Api"/>
+			<item value="YX_MQ"/>
 			<item value="YXBase"/>
-			<item value="YX-User-Service"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
@@ -67,6 +66,8 @@
 	</section>
 	<section name="MavenModuleWizardParentPage">
 		<list key="moduleName">
+			<item value="YX_MQ"/>
+			<item value="YX-Cim-Sdk"/>
 			<item value="YX-Rest-Api"/>
 			<item value="YX-User-Service"/>
 			<item value="YX-Common"/>
@@ -98,13 +99,13 @@
 	</section>
 	<section name="Maven2ProjectWizardArchifactPage">
 		<list key="package">
-			<item value="org.YX.Rest.Api"/>
+			<item value="org.YX_MQ"/>
 		</list>
 		<list key="groupId">
 			<item value="com.geek.yx"/>
 		</list>
 		<list key="artifactId">
-			<item value="YX-Rest-Api"/>
+			<item value="YX_MQ"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>

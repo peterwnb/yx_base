@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kungfu.kpush.mapper.PushMapper">
+	<insert id="insert" parameterType="com.kungfu.kpush.model.PushVo">
+		insert into push_history
+		(
+			<trim suffix="" suffixOverrides=",">
+				msg_id,
+				<if test="receiver !=null and receiver != ''">
+					receiver,
+				</if>
+				<if test="content !=null and content != ''">
+					content,
+				</if>
+				<if test="title !=null and title != ''">
+					title,
+				</if>
+				<if test="osType !=null">
+					os_type,
+				</if>
+				<if test="bizType !=null">
+					biz_type,
+				</if>
+				<if test="msgType !=null and msgType !=''">
+					msg_type,
+				</if>
+				<if test="alert !=null and alert !=''">
+					alert,
+				</if>
+				create_tm,
+			</trim>
+		)
+
+		values
+		(
+			<trim suffix="" suffixOverrides=",">
+				#{msgId},
+				<if test="receiver != null and receiver != '' ">
+					#{receiver},
+				</if>
+				<if test="content != null and content !=''">
+					#{content},
+				</if>
+	
+				<if test="title != null and title != ''">
+					#{title},
+				</if>
+				<if test="osType !=null">
+					#{osType},
+				</if>
+				<if test="bizType !=null">
+					#{bizType},
+				</if>
+				<if test="msgType != null and msgType != '' ">
+					#{msgType},
+				</if>
+				<if test="alert != null and alert != '' ">
+					#{alert},
+				</if>
+				#{createTm},
+			</trim>
+		)
+	</insert>
+	
+	<select id="queryForPage" parameterType="java.util.Map" resultType="java.util.Map">
+		 <if test="direct == '0'.toString()"> <!-- 下拉获取新数据 -->
+ 		      SELECT
+				  p.msg_id as msgId,
+				  p.receiver,
+				  p.content,
+				  p.title,
+				  p.os_type as osType,
+				  p.biz_type as bizType,
+				  DATE_FORMAT(p.create_tm,'%Y-%m-%d %H:%m') as sendTime 
+			FROM `push_history` p where p.receiver=#{receiver} and p.msg_id > #{lastId} order by p.create_tm desc limit #{limit};
+ 		 </if>
+ 		 <if test="direct == '1'.toString()"><!-- 上拉获取历史数据 -->
+ 		      SELECT
+				  p.msg_id as msgId,
+				  p.receiver,
+				  p.content,
+				  p.title,
+				  p.os_type as osType,
+				  p.biz_type as bizType,
+				  DATE_FORMAT(p.create_tm,'%Y-%m-%d %H:%m') as sendTime 
+			  FROM `push_history` p where p.receiver=#{receiver}
+					<![CDATA[
+					 	and p.msg_id < #{lastId} 
+					]]>
+			  order by p.create_tm desc limit #{limit};
+ 		 </if>
+	</select>
+	
+	<insert id="addSchedulePush" parameterType="com.kungfu.kpush.model.SchedulePush">
+		insert into schedule_push (push_id , receiver,title,content,os_type,biz_type,time_to_send,create_time)
+		   values
+		( replace(uuid(),'-','') , #{receiver} , #{title} , #{content} , #{osType} , #{bizType} ,#{timeToSend} ,now())
+	</insert>
+	
+	<resultMap type="com.kungfu.kpush.model.SchedulePush" id="schedulePush">
+		<result column="receiver" property="receiver"/>
+        <result column="title" property="title"/>
+        <result column="os_type" property="osType"/>
+        <result column="content" property="content"/>
+    	<result column="biz_type" property="bizType"/>
+	</resultMap>
+	
+	<select id="getSchedulePushList">
+		select 
+			receiver,
+			title,
+			content,
+			os_type,
+			biz_type,
+			DATE_FORMAT(time_to_send,'%Y-%m-%d %H:%m') as sendTime 
+		from schedule_push
+		where  TO_DAYS( now() ) - TO_DAYS(time_to_send) = 0 
+	</select>
+</mapper>

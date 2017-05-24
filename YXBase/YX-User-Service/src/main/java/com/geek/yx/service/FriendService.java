@@ -10,9 +10,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.geek.yx.common.Constants.FRIEND_STATUS;
+import com.geek.yx.common.Constants.INVITE_OP;
 import com.geek.yx.common.Constants.MQ_NAME;
 import com.geek.yx.common.core.base.BaseService;
 import com.geek.yx.common.core.support.mq.QueueSender;
+import com.geek.yx.common.core.support.mq.msg.InviteMsg;
 import com.geek.yx.common.core.vo.ResultCodeEnum;
 import com.geek.yx.common.core.vo.ResultObj;
 import com.geek.yx.mapper.FriendMapper;
@@ -46,8 +48,14 @@ public class FriendService extends BaseService<Friend>{
 		Date d = new Date();
 		friend.setCreateTime(d);
 		friend.setUpdateTime(d);
+		friend.setStatus(0);
 		friemdMapper.insert(friend);
-		queueSender.send(MQ_NAME.INVITE_MSG, "invite");
+		
+		InviteMsg msg = new InviteMsg();
+		msg.setSender(""+friend.getUserId());
+		msg.setReceiver(""+friend.getFriendId());
+		msg.setOpType(INVITE_OP.INVITE);
+		queueSender.send(MQ_NAME.INVITE_MSG, msg.toString());
 		return new ResultObj();
 	}
 	
@@ -69,10 +77,22 @@ public class FriendService extends BaseService<Friend>{
 			friend.setUpdateTime(d);
 			friemdMapper.updateInviteStatus(friend);
 			queueSender.send(MQ_NAME.INVITE_MSG, "invite success");
+			
+			InviteMsg msg = new InviteMsg();
+			msg.setSender(""+friend.getUserId());
+			msg.setReceiver(""+friend.getFriendId());
+			msg.setOpType(INVITE_OP.RSP_INVITE_YES);
+			queueSender.send(MQ_NAME.INVITE_MSG, msg.toString());
 		} else {
 			//如果是不通过邀请，直接删除
 			friemdMapper.deleteById(dbInfo.getId());
-			queueSender.send(MQ_NAME.INVITE_MSG, "invite delete");
+			
+			InviteMsg msg = new InviteMsg();
+			msg.setSender(""+friend.getUserId());
+			msg.setReceiver(""+friend.getFriendId());
+			msg.setOpType(INVITE_OP.RSP_INVITE_NO);
+			
+			queueSender.send(MQ_NAME.INVITE_MSG, msg.toString());
 		}
 		return new ResultObj();
 	}
@@ -83,5 +103,14 @@ public class FriendService extends BaseService<Friend>{
 	 */
 	public List<Map<String,Object>> queryNewer(Friend friend){
 		return friemdMapper.queryNew(friend.getUserId());
+	}
+	
+	/**
+	 * 获取好友列表
+	 * @param friend
+	 * @return
+	 */
+	public List<Map<String,Object>> getFriendList(Friend friend){
+		return friemdMapper.queryFriendList(friend.getUserId());
 	}
 }

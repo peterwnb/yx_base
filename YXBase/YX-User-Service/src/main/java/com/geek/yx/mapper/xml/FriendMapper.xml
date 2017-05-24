@@ -31,7 +31,39 @@
 		  or (uf.user_id = #{friendId} and uf.friend_id = #{userId}) 
 	</select>
 	
-	<select id="queryNew" parameterType="java.util.Map" resultType="java.util.Map">
+	<select id="queryFriendList" parameterType="java.lang.Long" resultType="java.util.Map">
+		select * from (
+			SELECT * FROM
+			(	  
+				select 
+					u.id_ as userId,
+					u.gender as gender,
+					u.nick_name as nickName,
+					u.phone,
+					u.avatar as avatar,
+					uf.create_time as addTime
+				from user_friend uf  
+					left join aas_user u on uf.user_id = u.id_
+				where uf.status_ = 1 and uf.friend_id = 867215236871110656
+			) TMP 
+			UNION
+			SELECT * FROM
+			(
+					select 
+					u.id_ as userId,
+					u.gender as gender,
+					u.nick_name as nickName,
+					u.phone,
+					u.avatar as avatar,
+			    uf.create_time as addTime
+				from user_friend uf  
+					left join aas_user u on uf.friend_id = u.id_
+				where uf.status_ = 1 and uf.user_id = 867215236871110656
+			) TMP
+		) tt order by tt.addTime
+	</select>
+	
+	<select id="queryNew" parameterType="java.lang.Long" resultType="java.util.Map">
 		select * from
 		(	select 
 				u.id_ as userId,
@@ -44,9 +76,9 @@
 			(
 				 select uid from
 				 (
-						select uf.friend_id as uid from user_friend uf where uf.user_id = '1123' 
+						select uf.friend_id as uid from user_friend uf where uf.user_id = #{userId} 
 							 union 
-						select uf.user_id as uid from user_friend uf where uf.friend_id = '1123'
+						select uf.user_id as uid from user_friend uf where uf.friend_id = #{userId}
 				 ) tmp where tmp.uid = u.id_  
 			) order by u.create_time desc 
 		) tmp

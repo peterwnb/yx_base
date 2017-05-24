@@ -26,4 +26,10 @@ public interface FriendMapper extends BaseMapper<Friend> {
 	 * @return
 	 */
 	List<Map<String,Object>> queryNew(Long userId);
+	
+	/**
+	 * 获取用户ID为{userId}的用户的好友列表
+	 * @return
+	 */
+	List<Map<String,Object>> queryFriendList(Long userId);
 }

@@ -91,6 +91,12 @@ public interface Constants {
     	public static final Integer DEGREE = -1; //不同意加好友
     }
     
+    public interface INVITE_OP{
+    	public static final String INVITE = "1";      //邀请
+    	public static final String RSP_INVITE_YES = "2";  //同意应答请求
+    	public static final String RSP_INVITE_NO = "3";  //不同意应答请求
+    }
+    
     public interface MQ_NAME{
     	public static final String INVITE_MSG = "USER_INVITE_MSG";
     }

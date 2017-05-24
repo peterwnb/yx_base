@@ -10,16 +10,29 @@
 		<item value="1000" key="org.eclipse.search.resultpage.limit"/>
 	</section>
 	<section name="TextSearchPage">
-		<item value="3" key="HISTORY_SIZE"/>
+		<item value="4" key="HISTORY_SIZE"/>
 		<item value="false" key="CASE_SENSITIVE"/>
 		<item value="false" key="REG_EX_SEARCH"/>
 		<item value="false" key="WHOLE_WORD"/>
 		<item value="false" key="SEARCH_DERIVED"/>
 		<section name="EXTENSIONS">
-			<item value="*.*" key="0"/>
-			<item value="*.java" key="1"/>
+			<item value="*.xml" key="0"/>
+			<item value="*.*" key="1"/>
+			<item value="*.java" key="2"/>
 		</section>
 		<section name="HISTORY2">
+			<item value="true" key="ignoreCase"/>
+			<item value="0" key="scope"/>
+			<item value="false" key="isWholeWord"/>
+			<item value="sysProvider" key="textPattern"/>
+			<item value="false" key="isRegExSearch"/>
+			<list key="fileNamePatterns">
+				<item value="*.java"/>
+			</list>
+			<list key="workingSets">
+			</list>
+		</section>
+		<section name="HISTORY3">
 			<item value="true" key="ignoreCase"/>
 			<item value="0" key="scope"/>
 			<item value="false" key="isWholeWord"/>
@@ -35,10 +48,10 @@
 			<item value="true" key="ignoreCase"/>
 			<item value="0" key="scope"/>
 			<item value="false" key="isWholeWord"/>
-			<item value="YX-Web-Server" key="textPattern"/>
+			<item value="QueueSender" key="textPattern"/>
 			<item value="false" key="isRegExSearch"/>
 			<list key="fileNamePatterns">
-				<item value="*.*"/>
+				<item value="*.xml"/>
 			</list>
 			<list key="workingSets">
 			</list>
@@ -47,10 +60,10 @@
 			<item value="true" key="ignoreCase"/>
 			<item value="0" key="scope"/>
 			<item value="false" key="isWholeWord"/>
-			<item value="sysProvider" key="textPattern"/>
+			<item value="YX-Web-Server" key="textPattern"/>
 			<item value="false" key="isRegExSearch"/>
 			<list key="fileNamePatterns">
-				<item value="*.java"/>
+				<item value="*.*"/>
 			</list>
 			<list key="workingSets">
 			</list>
@@ -88,9 +101,9 @@
 		<item value="org.eclipse.search.internal.ui.text.TextSearchPage" key="PREVIOUS_PAGE"/>
 	</section>
 	<section name="DialogBounds_SearchDialog">
-		<item value="821" key="DIALOG_WIDTH"/>
+		<item value="559" key="DIALOG_WIDTH"/>
 		<item value="1|微软雅黑|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|微软雅黑" key="DIALOG_FONT_NAME"/>
-		<item value="464" key="DIALOG_HEIGHT"/>
+		<item value="478" key="DIALOG_HEIGHT"/>
 		<item value="422" key="DIALOG_X_ORIGIN"/>
 		<item value="54" key="DIALOG_Y_ORIGIN"/>
 	</section>

@@ -1,0 +1,7 @@
+package com.geek.yx.common.core.support.mq.msg;
+
+import java.io.Serializable;
+
+public class InvitaMsg implements Serializable{
+
+}

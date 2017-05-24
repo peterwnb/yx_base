@@ -1,0 +1,37 @@
+package com.geek.yx.common.core.support.mq.msg;
+
+import java.io.Serializable;
+
+import com.alibaba.fastjson.JSON;
+
+public class InvitaMsg implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3339214317576454474L;
+	
+	private String invitorId; //邀请者ID
+	
+	private String invitedId; //被邀请者ID
+
+	public String getInvitorId() {
+		return invitorId;
+	}
+
+	public void setInvitorId(String invitorId) {
+		this.invitorId = invitorId;
+	}
+
+	public String getInvitedId() {
+		return invitedId;
+	}
+
+	public void setInvitedId(String invitedId) {
+		this.invitedId = invitedId;
+	}
+
+	public String toString(){
+		return JSON.toJSONString(this);
+	}
+}

@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.toolkit.IdWorker;
+import com.geek.yx.common.core.vo.BaseResponse;
 import com.geek.yx.common.core.vo.ResultObj;
 import com.geek.yx.model.BaseModel;
 
@@ -37,6 +38,9 @@ public class Parameter implements Serializable {
 		} else if(result instanceof ResultObj){
 			this.result = (ResultObj) result;
 		}
+		else if(result instanceof BaseResponse){
+			this.result = (BaseResponse) result;
+		}
 	}
 
 	private String service;
@@ -48,7 +52,18 @@ public class Parameter implements Serializable {
 	private Page<?> page;
 	private List<?> list;
 	private ResultObj result;
-    public ResultObj getResult() {
+	
+	private BaseResponse baseResponse;
+	
+    public BaseResponse getBaseResponse() {
+		return baseResponse;
+	}
+
+	public void setBaseResponse(BaseResponse baseResponse) {
+		this.baseResponse = baseResponse;
+	}
+
+	public ResultObj getResult() {
 		return result;
 	}
 

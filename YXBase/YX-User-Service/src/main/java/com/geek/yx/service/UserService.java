@@ -42,6 +42,10 @@ public class UserService extends BaseService<User>{
 		return userMapper.queryByPhone(user.getPhone());
 	}
 	
+	public User queryByAccount(User user){
+		return userMapper.queryByAccount(user.getAccountId());
+	}
+	
 	/**
 	 * 创建用户服务
 	 * @return

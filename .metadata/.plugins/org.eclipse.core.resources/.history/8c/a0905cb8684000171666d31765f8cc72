@@ -1,0 +1,8 @@
+package com.geek.yx.core;
+
+import com.geek.yx.common.core.base.BaseProviderImpl;
+import com.geek.yx.provider.IAccountProvider;
+
+public class AccountProviderImpl extends BaseProviderImpl implements IAccountProvider{
+
+}

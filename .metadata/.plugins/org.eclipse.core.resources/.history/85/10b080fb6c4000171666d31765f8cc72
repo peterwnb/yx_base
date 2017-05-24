@@ -1,0 +1,5 @@
+package com.geek.yx.mapper;
+
+public interface AccountMapper {
+
+}

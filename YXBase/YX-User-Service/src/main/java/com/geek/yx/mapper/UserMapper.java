@@ -7,4 +7,6 @@ import com.geek.yx.model.User;
 
 public interface UserMapper extends BaseMapper<User> {
 	public User queryByPhone(@Param("phone")String phone);
+	
+	public User queryByAccount(@Param("accountId")Long accountId);
 }

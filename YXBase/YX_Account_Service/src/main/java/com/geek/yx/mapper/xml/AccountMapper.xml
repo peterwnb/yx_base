@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.geek.yx.mapper.AccountMapper">
+
+	<resultMap type="com.geek.yx.model.Account" id="baseMap">
+		<result column="id_" property="id"/>
+		<result column="account" property="account"/>
+		<result column="password" property="password"/>
+		<result column="phone" property="phone"/>
+		<result column="account_type" property="accountType"/>
+	</resultMap>
+	
+	<select id="queryByAccount" parameterType="java.lang.String" resultMap="baseMap">
+		select 
+			id_,
+			account,
+			password,
+			phone,
+			account_type
+		from aas_account
+		where account = #{account}
+	</select>
+</mapper>

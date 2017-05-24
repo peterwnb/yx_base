@@ -1,7 +1,5 @@
 package com.geek.yx.common.core.vo;
 
-import java.util.Map;
-
 public class BaseResponse extends ResultObj{
 	/**
 	 * 
@@ -41,11 +39,6 @@ public class BaseResponse extends ResultObj{
 		setResultCode(resultCode);
 		setResultDesc(resultDesc);
 		setData("");
-	}
-	
-	public BaseResponse(Map<?,?> map) {
-		setResultCode((String) map.get("resultCode"));
-		setResultDesc((String) map.get("resultDesc"));
 	}
 	
 	public BaseResponse(ResultCodeEnum resultEnum){

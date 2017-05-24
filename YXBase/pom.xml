@@ -421,5 +421,7 @@
 		<module>YX-Common</module>
 		<module>YX-User-Service</module>
 		<module>YX-Rest-Api</module>
+		<module>YX_Account_Facade</module>
+		<module>YX_Account_Service</module>
 	</modules>
 </project>

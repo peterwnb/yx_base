@@ -1,0 +1,8 @@
+package com.geek.yx.mapper;
+
+import com.geek.yx.common.core.base.BaseMapper;
+import com.geek.yx.model.Account;
+
+public interface AccountMapper extends BaseMapper<Account>{
+	public queryByAccount();
+}

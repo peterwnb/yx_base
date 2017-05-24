@@ -15,7 +15,7 @@
 	</resultMap>
 	
 	<!-- 查询列表-->
-	<select id="queryByPhone" resultMap="userMap">
+	<select id="queryByPhone" resultMap="userMap" parameterType="java.lang.String">
 		select 
 			id_,
 			user_name,
@@ -28,5 +28,21 @@
 			address,
 			avatar
 		from aas_user where phone = #{phone}
+	</select>
+	
+	<!-- 查询列表-->
+	<select id="queryByAccount" resultMap="userMap" parameterType="java.lang.Long">
+		select 
+			id_,
+			user_name,
+			nick_name,
+			gender,
+			signature,
+			birthday,
+			phone,
+			email,
+			address,
+			avatar
+		from aas_user where account_id = #{accountId}
 	</select>
 </mapper>

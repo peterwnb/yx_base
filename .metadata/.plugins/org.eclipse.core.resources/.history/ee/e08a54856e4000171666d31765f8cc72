@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.geek.yx.mapper.AccountMapper">
+
+	<resultMap type="com.geek.yx.model.Account" id="baseMap">
+		<result column="id_" property="id"/>
+		<result column="user_id" property="userId"/>
+		<result column="friend_id" property="friendId"/>
+		<result column="status_" property="status"/>
+	</resultMap>
+	
+	<update id="queryByAccount" parameterType="com.geek.yx.model.Friend">
+		update 
+			user_friend 
+		set status_ = 1  
+		where 
+			(user_id = #{userId} and friend_id = #{friendId})  
+			or 
+			(user_id = #{friendId} and friend_id = #{userId}) 
+	</update>
+	
+	<select id="queryInviteInfo" parameterType="com.geek.yx.model.Friend" resultMap="baseMap">
+		select 
+			id_ , 
+			user_id , 
+			friend_id , 
+			status_ 
+		from user_friend uf
+		where 
+		(uf.user_id = #{userId} and uf.friend_id = #{friendId})
+		  or (uf.user_id = #{friendId} and uf.friend_id = #{userId}) 
+	</select>
+</mapper>

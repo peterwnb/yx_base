@@ -7,6 +7,10 @@ public enum ResultCodeEnum
 {
     /** 成功 */
     SUCCESS("0", "操作成功"),
+
+    ACCOUNT_ACCOUNT_REPEAT("ACCOUNT_401001" , "账号已存在"),
+    ACCOUNT_AUTH_FAILED("ACCOUNT_401002" , "账号与密码不匹配"),
+    
     USER_PHONE_REPEAT("USER_401001","手机号重复"),
     USER_GROU_NAME_REPEAT("USER_401002","群组名重复"),
     USER_ADD_FRIEND_REPEAT("USER_401003","对方已经是你的好友，请不要重复添加"),

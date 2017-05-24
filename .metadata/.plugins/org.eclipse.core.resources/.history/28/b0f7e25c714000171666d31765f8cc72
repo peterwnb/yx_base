@@ -1,0 +1,91 @@
+package com.geek.yx.service;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.geek.yx.common.core.base.Parameter;
+import com.geek.yx.common.core.vo.BaseResponse;
+import com.geek.yx.common.core.vo.ResultCodeEnum;
+import com.geek.yx.common.core.vo.ResultObj;
+import com.geek.yx.mapper.AccountMapper;
+import com.geek.yx.model.Account;
+import com.geek.yx.model.User;
+import com.geek.yx.provider.IUserProvider;
+
+@Service("accountService")
+public class AccountService {
+	@Autowired
+    private IUserProvider provider;
+	
+	@Autowired
+	private AccountMapper accountMapper;
+	
+	private String getUserService(){
+		return "userService";
+	}
+	
+	/**
+	 * 创建账号
+	 * @return
+	 */
+	@Transactional
+	public ResultObj createAccount(Account account){
+		
+		Account dbInfo = accountMapper.queryByAccount(account.getAccount());
+		
+		if(null != dbInfo){
+			return new ResultObj(ResultCodeEnum.ACCOUNT_ACCOUNT_REPEAT);
+		}
+		
+		//插入信息
+		accountMapper.insert(account);
+		
+		User user = new User();
+		user.setPhone(account.getPhone());
+		user.setAccountId(account.getId());
+		Parameter parameter = new Parameter(getUserService(), "createUser").setModel(user);
+		Parameter result = provider.execute(parameter);
+		result.getResult();
+		
+		return new ResultObj();
+	}
+	
+	/**
+	 * 账号授权登陆
+	 * @return
+	 */
+	public BaseResponse authAccount(Account account){
+		BaseResponse rsp = new BaseResponse();
+		Account dbInfo = accountMapper.queryByAccount(account.getAccount());
+		if(null == dbInfo){
+			return new BaseResponse(ResultCodeEnum.ACCOUNT_AUTH_FAILED);
+		}
+		
+		if(!account.getPassword().equals(dbInfo.getPassword())){
+			return new BaseResponse(ResultCodeEnum.ACCOUNT_AUTH_FAILED);
+		}
+		
+		Map<String,Object> data = new HashMap<String,Object>();
+		data.put("accountInfo", dbInfo);
+		
+		//根据账号ID反查用户基本信息
+		User user = new User();
+		user.setAccountId(account.getId());
+		
+		Parameter parameter = new Parameter(getUserService(), "queryByAccount").setModel(user);
+		Parameter result = provider.execute(parameter);
+		
+		if(result != null || null != result.getModel()){
+			User userResult  = (User)result.getModel();
+			data.put("userInfo", userResult);
+		}
+		
+		rsp.setData(data);
+		
+		return null;
+	}
+}

@@ -8,6 +8,9 @@ import com.baomidou.mybatisplus.annotations.TableName;
 @TableName("aas_user")
 @SuppressWarnings("serial")
 public class User extends BaseModel {
+	@TableField("account_id")
+	private Long accountId;
+	
 	@TableField("user_name")
 	private String userName;
 	
@@ -34,6 +37,14 @@ public class User extends BaseModel {
 
 	@TableField("avatar")
 	private String avatar;
+
+	public Long getAccountId() {
+		return accountId;
+	}
+
+	public void setAccountId(Long accountId) {
+		this.accountId = accountId;
+	}
 
 	public String getSignature() {
 		return signature;

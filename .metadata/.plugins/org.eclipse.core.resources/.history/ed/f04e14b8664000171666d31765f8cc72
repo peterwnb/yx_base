@@ -1,0 +1,12 @@
+package com.geek.yx.model;
+
+import com.baomidou.mybatisplus.annotations.TableName;
+
+@TableName("aas_account")
+@SuppressWarnings("serial")
+public class Account extends BaseModel{
+	private String account;
+	private String password;
+	private Integer accountType;
+	
+}

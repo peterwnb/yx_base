@@ -14,9 +14,9 @@
 			user_friend 
 		set status_ = 1  
 		where 
-			(user_id = #{userId} and friend_id = #{friendId})  
+			(uf.user_id = #{userId} and uf.friend_id = #{friendId})  
 			or 
-			(user_id = #{friendId} and friend_id = #{userId}) 
+			(uf.user_id = #{friendId} and uf.friend_id = #{userId}) 
 	</update>
 	
 	<select id="queryInviteInfo" parameterType="com.geek.yx.model.Friend" resultMap="baseMap">

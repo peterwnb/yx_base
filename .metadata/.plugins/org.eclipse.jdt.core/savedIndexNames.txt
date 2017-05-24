@@ -21,7 +21,6 @@ INDEX VERSION 1.127+D:\Workspaces\YX_Base\yx_server\.metadata\.plugins\org.eclip
 3069477236.index
 694282147.index
 512000909.index
-3849887094.index
 1297419965.index
 1918287869.index
 4239326188.index

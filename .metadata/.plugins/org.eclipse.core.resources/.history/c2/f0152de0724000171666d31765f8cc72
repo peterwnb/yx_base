@@ -280,7 +280,7 @@
 			<id>product</id>
 			<properties>
 				<sys.jdbc.config.path>file:/home/config/YXBase/jdbc-sys.properties</sys.jdbc.config.path>
-				<system.config.path>file:/home/config/YXBase/system.properties</system.config.path>
+				<system.config.path>file:/home/config/iBase4J/system.properties</system.config.path>
 			</properties>
 			<build>
 				<resources>

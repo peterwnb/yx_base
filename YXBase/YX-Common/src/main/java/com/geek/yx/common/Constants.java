@@ -35,11 +35,13 @@ public interface Constants {
     /** 非法请求次数 */
     public static final String MALICIOUS_REQUEST_TIMES = "MALICIOUS_REQUEST_TIMES";
     /** 缓存命名空间 */
-    public static final String CACHE_NAMESPACE = "iBase4J:";
+    public static final String CACHE_NAMESPACE = "YX:";
+    
     /** 在线用户数量 */
     public static final String ALLUSER_NUMBER = "SYSTEM:" + CACHE_NAMESPACE + "ALLUSER_NUMBER";
+    
     /** TOKEN */
-    public static final String TOKEN_KEY = CACHE_NAMESPACE + "TOKEN_KEY";
+    public static final String TOKEN_KEY = CACHE_NAMESPACE + "TOKEN_KEY:";
     
     public static final String DEFAULT_GROUP_NAME = "默认群组";
     public static final String DEFAULT_GROUP_AVATAR = "default.png";

@@ -1,0 +1,366 @@
+package com.geek.yx.common.core.vo;
+
+import java.security.Key;
+import java.security.NoSuchAlgorithmException;
+
+import javax.crypto.Cipher;
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
+
+import org.apache.commons.codec.DecoderException;
+import org.apache.commons.codec.binary.Hex;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.alibaba.fastjson.JSON;
+
+
+public class AESCoderUtil {
+	private static final Logger logger = LoggerFactory.getLogger(AESCoderUtil.class);
+
+	private static final String KEY_ALGORITHM = "AES";
+
+	private static final String DEFAULT_CIPHER_ALGORITHM = "AES/ECB/PKCS5Padding";
+	
+	private static final String AES_KEY = "470c37bed9d8dad47dd4ee0b29930f7a";
+
+	public static String initKEY()
+	{
+		String KEY = "";
+		/*PropertiesConfiguration config = null;
+		try {
+			config = new PropertiesConfiguration("config.properties");
+		} catch (ConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		KEY = config.getString("aes.key");*/
+		KEY = AES_KEY;
+		return KEY;
+	}
+
+	/**
+	 * 初始化密钥
+	 * 
+	 * @return byte[] 密钥
+	 * @throws Exception
+	 */
+	public static byte[] initSecretKey()
+	{
+		//返回生成指定算法的秘密密钥的 KeyGenerator 对象  
+		KeyGenerator kg = null;
+		try
+		{
+			kg = KeyGenerator.getInstance(KEY_ALGORITHM);
+		}
+		catch (NoSuchAlgorithmException e)
+		{
+			e.printStackTrace();
+			return new byte[0];
+		}
+		//初始化此密钥生成器，使其具有确定的密钥大小  
+		//AES 要求密钥长度为 128  
+		kg.init(128);
+		//生成一个密钥  
+		SecretKey secretKey = kg.generateKey();
+		return secretKey.getEncoded();
+	}
+
+	/**
+	 * 转换密钥
+	 * 
+	 * @param key 二进制密钥
+	 * @return 密钥
+	 */
+	private static Key toKey(byte[] key)
+	{
+		//生成密钥  
+		return new SecretKeySpec(key, KEY_ALGORITHM);
+	}
+
+	/**
+	 * 加密
+	 * 
+	 * @param data 待加密数据
+	 * @param key 密钥
+	 * @return byte[] 加密数据
+	 * @throws Exception
+	 */
+	public static byte[] encrypt(byte[] data, Key key) throws Exception
+	{
+		return encrypt(data, key, DEFAULT_CIPHER_ALGORITHM);
+	}
+
+	/**
+	 * 加密
+	 * 
+	 * @param data 待加密数据
+	 * @param key 二进制密钥
+	 * @return byte[] 加密数据
+	 * @throws Exception
+	 */
+	public static byte[] encrypt(byte[] data, byte[] key) throws Exception
+	{
+		return encrypt(data, key, DEFAULT_CIPHER_ALGORITHM);
+	}
+
+	/**
+	 * 加密
+	 * 
+	 * @param data 待加密数据
+	 * @param key 二进制密钥
+	 * @param cipherAlgorithm 加密算法/工作模式/填充方式
+	 * @return byte[] 加密数据
+	 * @throws Exception
+	 */
+	public static byte[] encrypt(byte[] data, byte[] key, String cipherAlgorithm) throws Exception
+	{
+		//还原密钥  
+		Key k = toKey(key);
+		return encrypt(data, k, cipherAlgorithm);
+	}
+
+	/**
+	 * 加密
+	 * 
+	 * @param data 待加密数据
+	 * @param key 密钥
+	 * @param cipherAlgorithm 加密算法/工作模式/填充方式
+	 * @return byte[] 加密数据
+	 * @throws Exception
+	 */
+	public static byte[] encrypt(byte[] data, Key key, String cipherAlgorithm) throws Exception
+	{
+		//实例化  
+		Cipher cipher = Cipher.getInstance(cipherAlgorithm);
+		//使用密钥初始化，设置为加密模式  
+		cipher.init(Cipher.ENCRYPT_MODE, key);
+		//执行操作  
+		return cipher.doFinal(data);
+	}
+
+	/**
+	 * 解密
+	 * 
+	 * @param data 待解密数据
+	 * @param key 二进制密钥
+	 * @return byte[] 解密数据
+	 * @throws Exception
+	 */
+	public static byte[] decrypt(byte[] data, byte[] key) throws Exception
+	{
+		return decrypt(data, key, DEFAULT_CIPHER_ALGORITHM);
+	}
+
+	/**
+	 * 解密
+	 * 
+	 * @param data 待解密数据
+	 * @param key 密钥
+	 * @return byte[] 解密数据
+	 * @throws Exception
+	 */
+	public static byte[] decrypt(byte[] data, Key key) throws Exception
+	{
+		return decrypt(data, key, DEFAULT_CIPHER_ALGORITHM);
+	}
+
+	/**
+	 * 解密
+	 * 
+	 * @param data 待解密数据
+	 * @param key 二进制密钥
+	 * @param cipherAlgorithm 加密算法/工作模式/填充方式
+	 * @return byte[] 解密数据
+	 * @throws Exception
+	 */
+	public static byte[] decrypt(byte[] data, byte[] key, String cipherAlgorithm) throws Exception
+	{
+		//还原密钥  
+		Key k = toKey(key);
+		return decrypt(data, k, cipherAlgorithm);
+	}
+
+	/**
+	 * 解密
+	 * 
+	 * @param data 待解密数据
+	 * @param key 密钥
+	 * @param cipherAlgorithm 加密算法/工作模式/填充方式
+	 * @return byte[] 解密数据
+	 * @throws Exception
+	 */
+	public static byte[] decrypt(byte[] data, Key key, String cipherAlgorithm) throws Exception
+	{
+		//实例化  
+		Cipher cipher = Cipher.getInstance(cipherAlgorithm);
+		//使用密钥初始化，设置为解密模式  
+		cipher.init(Cipher.DECRYPT_MODE, key);
+		//执行操作  
+		return cipher.doFinal(data);
+	}
+
+	@SuppressWarnings("unused")
+	private static String showByteArray(byte[] data)
+	{
+		if (null == data)
+		{
+			return null;
+		}
+		StringBuilder sb = new StringBuilder("{");
+		for (byte b : data)
+		{
+			sb.append(b).append(",");
+		}
+		sb.deleteCharAt(sb.length() - 1);
+		sb.append("}");
+		return sb.toString();
+	}
+
+	/**
+	 * 返回加密后字符串
+	 * 
+	 * @param data 加密字符串
+	 * @param k 密钥
+	 * @return
+	 * @throws Exception
+	 */
+	public static String encodeStr(String data)
+	{
+		String response = "";
+		try
+		{
+			byte[] bytekey = Hex.decodeHex(initKEY().toCharArray());
+			Key k = toKey(bytekey);
+			byte[] b = encrypt(data.getBytes(), k);
+			response = Hex.encodeHexString(b);
+		}
+		catch (DecoderException e)
+		{
+			logger.error("Encode AMS token error", e);
+		}
+		catch (Exception e)
+		{
+			logger.error("Encode AMS token error", e);
+		}
+		return response;
+	}
+
+	/**
+	 * 返回解密后字符串
+	 * 
+	 * @param data 揭秘数据
+	 * @param k 解密密钥
+	 * @return
+	 * @throws Exception
+	 */
+	public static String decodeStr(String data)
+	{
+		String response = "";
+		try
+		{
+			byte[] bytekey = Hex.decodeHex(initKEY().toCharArray());
+			Key k = toKey(bytekey);
+			byte[] b = Hex.decodeHex(data.toCharArray());
+			byte[] decryptData = decrypt(b, k);
+			response = new String(decryptData);
+		}
+		catch (DecoderException e)
+		{
+			logger.error("Decoder AMS token error", e);
+		}
+		catch (Exception e)
+		{
+			logger.error("Decoder AMS token error", e);
+		}
+		return response;
+	}
+
+	/**
+	 * 解密航信密码
+	 * 
+	 * @param data
+	 * @return
+	 * @throws Exception
+	 */
+	public static String decodePwd(String pwd) throws Exception
+	{
+		String response = null;
+		byte[] bytekey = Hex.decodeHex(initKEY().toCharArray());
+		Key k = toKey(bytekey);
+		byte[] b = Hex.decodeHex(pwd.toCharArray());
+		byte[] decryptData = decrypt(b, k);
+		response = new String(decryptData);
+		return response;
+	}
+
+	/**
+	 * 加密CS token
+	 * 
+	 * @param amServerTokenPOJO
+	 * @return
+	 */
+	public static String encodeAMStoken(ServerToken tokenVo)
+	{
+		String json_str = JSON.toJSONString(tokenVo);
+		String AMStoken = encodeStr(json_str);
+		logger.debug("AAS token:" + AMStoken);
+		return AMStoken;
+	}
+
+	/**
+	 * 解密CS token
+	 * 
+	 * @param aMServerToken
+	 * @return
+	 * @throws Exception
+	 */
+	public static ServerToken decodeAMStoken(String aMServerToken) throws Exception
+	{
+		ServerToken amServerTokenPOJO = null;
+		String token_str = null;
+
+		byte[] bytekey = Hex.decodeHex(initKEY().toCharArray());
+		Key k = toKey(bytekey);
+		byte[] b = Hex.decodeHex(aMServerToken.toCharArray());
+		byte[] decryptData = decrypt(b, k);
+		token_str = new String(decryptData);
+
+		amServerTokenPOJO = JSON.toJavaObject(token_str, Class<ServerToken> clazz);
+		/**
+		 * Token过期一小时
+		 */
+		//		long time = 3600000;//一小时
+		//		long current_tm = System.currentTimeMillis();
+		//一小时token失效
+		//		if (current_tm - amServerTokenPOJO.getCreate_time() > time)
+		//		{
+		//			return null;
+		//		}
+		logger.debug("CS auth success：" + amServerTokenPOJO.toString());
+		return amServerTokenPOJO;
+	}
+
+	public static void main(String[] args) throws Exception
+	{
+		//		System.out.println("现在系统时间："+System.currentTimeMillis());
+		//		
+		//		CarmateServerTokenPOJO amServerTokenPOJO = decodeAMStoken("e4d91c0a87d79b49a0d2a5ff7fda16641d0c0fc1afa3f80a3a8f39c3bf0059e573c44398568b76f85e20713700f621897d646a71549c872c074feedafb4e3e74f4442843eb02dc170e2a5abc4ea6d88b99ebdb42d45cd9970992cc217320b3f3c28598927ccf4a3467f95197bdb3a52bf86613eb7b80804f30ec500089d7d39b");
+		//		System.out.println(amServerTokenPOJO.toString());
+		//		System.out.println("token剩余使用时间："+ (System.currentTimeMillis() -  amServerTokenPOJO.getCreate_time()));
+		//		System.out.println(60*1000*60);
+		//long time = Long.valueOf("1394183428781");
+		AASServerTokenPOJO ap = new AASServerTokenPOJO("2c9081a33e775bc1013e775cc6890001",
+				"15902783101","1",System.currentTimeMillis());
+		String token = encodeAMStoken(ap);
+		//String s = "=";
+		//System.out.println(GSON.toJson(s));
+		System.out.println("token-->"+ token);
+		
+		//反向生成TOkenPojo
+		AASServerTokenPOJO tokenPOJO = AESCoderUtil
+				.decodeAMStoken(token);
+		System.out.println(tokenPOJO);
+	}
+}

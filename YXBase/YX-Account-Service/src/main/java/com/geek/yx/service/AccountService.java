@@ -8,10 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.geek.yx.common.Constants;
 import com.geek.yx.common.core.base.Parameter;
+import com.geek.yx.common.core.util.CacheUtil;
+import com.geek.yx.common.core.vo.AESCoderUtil;
 import com.geek.yx.common.core.vo.BaseResponse;
 import com.geek.yx.common.core.vo.ResultCodeEnum;
 import com.geek.yx.common.core.vo.ResultObj;
+import com.geek.yx.common.core.vo.ServerToken;
 import com.geek.yx.mapper.AccountMapper;
 import com.geek.yx.model.Account;
 import com.geek.yx.model.User;
@@ -72,7 +76,20 @@ public class AccountService {
 		}
 		
 		Map<String,Object> data = new HashMap<String,Object>();
-		data.put("accountInfo", dbInfo);
+		//Map<String,Object> userInfo = new HashMap<String,Object>();
+		
+		
+		long timestamp = new Date().getTime();
+		
+		String token  = AESCoderUtil.encodeAMStoken( new ServerToken(dbInfo.getId()+"", dbInfo.getPhone(), dbInfo.getAccountType(), timestamp));
+		
+		//先删除原有的旧的token
+		CacheUtil.getCache().del(Constants.TOKEN_KEY+dbInfo.getId());
+		
+		//重新设置token 12小时失效
+		CacheUtil.getCache().set(Constants.TOKEN_KEY+dbInfo.getId(), token, 12*60*60*1000);
+		data.put("token", token);
+		data.put("accountId", dbInfo.getId());
 		
 		//根据账号ID反查用户基本信息
 		User user = new User();

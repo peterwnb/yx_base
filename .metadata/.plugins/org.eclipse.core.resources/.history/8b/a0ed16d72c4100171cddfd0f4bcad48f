@@ -1,0 +1,8 @@
+package com.geek.yx.common.core.vo;
+
+public class ServerToken {
+	private String accountId;    //账号ID
+	private String mobile;       //手机号
+	private String clientType;   //	1:ios 2:android  3:pc  
+	private long createTime;     //生成时间戳
+}

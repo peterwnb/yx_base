@@ -1,0 +1,5 @@
+package com.geek.yx.common.core.vo;
+
+public class ServerToken {
+
+}

@@ -88,6 +88,16 @@ public class UserService extends BaseService<User>{
 		return new ResultObj();
 	}
 	
+	/**
+	 * 更新用户信息服务
+	 * @return
+	 */
+	@Transactional
+	public ResultObj updateUser(User user){
+		userMapper.updateById(user);
+		return new ResultObj();
+	}
+	
 	public void init() {
 		/*List<Long> list = ((UserMapper) mapper).selectIdPage(Collections.<String, Object>emptyMap());
 		for (Long id : list) {

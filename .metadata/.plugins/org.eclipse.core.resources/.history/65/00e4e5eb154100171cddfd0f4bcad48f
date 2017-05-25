@@ -1,0 +1,13 @@
+package com.geek.yx.web;
+
+import com.geek.yx.common.core.base.AbstractController;
+import com.geek.yx.provider.IAccountProvider;
+
+public class AccountController extends AbstractController<IAccountProvider>{
+
+	@Override
+	public String getService() {
+		return "accountService";
+	}
+
+}

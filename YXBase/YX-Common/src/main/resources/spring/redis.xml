@@ -58,4 +58,8 @@
 		<property name="hashKeySerializer" ref="keySerializer" />
 		<property name="hashValueSerializer" ref="valueSerializer" />
 	</bean>
-</beans>
+	
+	<bean id="jedisTemplate" class="com.geek.yx.common.core.support.cache.jedis.JedisTemplate">
+		<property name="jedisConnectionFactory" ref="jedisConnectionFactory"></property>
+	</bean>
+</beans> 

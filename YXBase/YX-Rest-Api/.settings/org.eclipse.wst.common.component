@@ -10,6 +10,9 @@
         <dependent-module archiveName="YX-User-Facade-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/YX-User-Facade/YX-User-Facade">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="YX-Account-Facade-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/YX-Account-Facade/YX-Account-Facade">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="${project.name}"/>
         <property name="java-output-path" value="/YX-Rest-Api/target/classes"/>
     </wb-module>

@@ -4,9 +4,7 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
-import org.springframework.stereotype.Component;
 
 import com.geek.yx.common.core.util.InstanceUtil;
 import com.geek.yx.common.core.util.PropertiesUtil;
@@ -20,17 +18,21 @@ import redis.clients.jedis.ShardedJedisPool;
  * @author Peter Chain
  * @version 2016年5月20日 下午3:19:19
  */
-@Component
+//@Component
 public class JedisTemplate {
     private static final Logger logger = LogManager.getLogger();
 
     private static ShardedJedisPool shardedJedisPool = null;
 
     private static Integer EXPIRE = PropertiesUtil.getInt("redis.expiration");
-    @Autowired
+    //@Autowired
     private JedisConnectionFactory jedisConnectionFactory;
 
-    // 获取线程
+    public void setJedisConnectionFactory(JedisConnectionFactory jedisConnectionFactory) {
+		this.jedisConnectionFactory = jedisConnectionFactory;
+	}
+
+	// 获取线程
     private ShardedJedis getJedis() {
         if (shardedJedisPool == null) {
             synchronized (EXPIRE) {

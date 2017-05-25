@@ -15,6 +15,7 @@
 	<!-- clean package -P build tomcat7:run-war-only -f pom-web-server.xml -->
 	<modules>
 		<module>YX-User-Facade</module>
+		<module>YX-Account-Facade</module>
 		<module>YX-Common</module>
 		<module>YX-Rest-Api</module>
 	</modules>

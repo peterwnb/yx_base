@@ -1,0 +1,27 @@
+package com.geek.yx.web;
+
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.geek.yx.common.core.base.AbstractController;
+import com.geek.yx.model.Account;
+import com.geek.yx.provider.IAccountProvider;
+
+import io.swagger.annotations.Api;
+@RestController
+@Api(value = "账号接口", description = "账号接口")
+@RequestMapping(value = "/user")
+public class AccountController extends AbstractController<IAccountProvider>{
+
+	@Override
+	public String getService() {
+		return "accountService";
+	}
+	
+	@PostMapping("/create")
+	public Object regist(@RequestBody Account account){
+		
+	}
+}

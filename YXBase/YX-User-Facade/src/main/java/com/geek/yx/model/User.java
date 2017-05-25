@@ -4,6 +4,8 @@ import java.util.Date;
 
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.geek.yx.common.core.util.DateUtil;
+import com.geek.yx.common.core.util.DateUtil.DATE_PATTERN;
 
 @TableName("aas_user")
 @SuppressWarnings("serial")
@@ -18,7 +20,7 @@ public class User extends BaseModel {
 	private String nickName;
 	
 	@TableField("gender")
-	private Integer gender;
+	private Integer gender = 0;
 
 	@TableField("signature")
 	private String signature;
@@ -54,8 +56,8 @@ public class User extends BaseModel {
 		this.signature = signature;
 	}
 
-	public Date getBirthday() {
-		return birthday;
+	public String getBirthday() {
+		return birthday==null?"":DateUtil.format(birthday, DATE_PATTERN.YYYY_MM_DD);
 	}
 
 	public void setBirthday(Date birthday) {

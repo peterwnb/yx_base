@@ -35,11 +35,10 @@ public class Parameter implements Serializable {
 			this.map = (Map<?, ?>) result;
 		} else if (result instanceof List<?>) {
 			this.list = (List<?>) result;
-		} else if(result instanceof ResultObj){
+		} else if(result instanceof BaseResponse){
+			this.baseResponse = (BaseResponse) result;
+		}else if(result instanceof ResultObj){
 			this.result = (ResultObj) result;
-		}
-		else if(result instanceof BaseResponse){
-			this.result = (BaseResponse) result;
 		}
 	}
 

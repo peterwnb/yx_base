@@ -76,7 +76,8 @@ public abstract class BaseModel implements Serializable {
 	 * @return the createBy
 	 */
 	public Long getCreateBy() {
-		return createBy;
+		return createBy == null?0:createBy;
+		
 	}
 
 	/**
@@ -106,7 +107,7 @@ public abstract class BaseModel implements Serializable {
 	 * @return the updateBy
 	 */
 	public Long getUpdateBy() {
-		return updateBy;
+		return updateBy == null?0:updateBy;
 	}
 
 	/**

@@ -1,5 +1,6 @@
 package com.geek.yx.service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -40,7 +41,9 @@ public class AccountService {
 		if(null != dbInfo){
 			return new ResultObj(ResultCodeEnum.ACCOUNT_ACCOUNT_REPEAT);
 		}
-		
+		Date d = new Date();
+		account.setCreateTime(d);
+		account.setUpdateTime(d);
 		//插入信息
 		accountMapper.insert(account);
 		
@@ -73,7 +76,7 @@ public class AccountService {
 		
 		//根据账号ID反查用户基本信息
 		User user = new User();
-		user.setAccountId(account.getId());
+		user.setAccountId(dbInfo.getId());
 		
 		Parameter parameter = new Parameter(getUserService(), "queryByAccount").setModel(user);
 		Parameter result = provider.execute(parameter);

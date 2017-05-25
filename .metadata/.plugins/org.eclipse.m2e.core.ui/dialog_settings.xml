@@ -7,7 +7,7 @@
 		<list key="name">
 		</list>
 		<list key="artifactId">
-			<item value="YX_MQ"/>
+			<item value="YX_Account_Service"/>
 			<item value="YXBase"/>
 		</list>
 		<list key="projectNameTemplate">
@@ -42,6 +42,7 @@
 	</section>
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="D:\Workspaces\YX_Base\yx_server\YXBase"/>
 			<item value="D:\Workspaces\YX_Base\yx_server"/>
 		</list>
 		<list key="projectNameTemplate">
@@ -66,6 +67,8 @@
 	</section>
 	<section name="MavenModuleWizardParentPage">
 		<list key="moduleName">
+			<item value="YX_Account_Service"/>
+			<item value="YX_Account_Facade"/>
 			<item value="YX_MQ"/>
 			<item value="YX-Cim-Sdk"/>
 			<item value="YX-Rest-Api"/>
@@ -99,13 +102,13 @@
 	</section>
 	<section name="Maven2ProjectWizardArchifactPage">
 		<list key="package">
-			<item value="org.YX_MQ"/>
+			<item value="org.YX_Account_Service"/>
 		</list>
 		<list key="groupId">
 			<item value="com.geek.yx"/>
 		</list>
 		<list key="artifactId">
-			<item value="YX_MQ"/>
+			<item value="YX_Account_Service"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>

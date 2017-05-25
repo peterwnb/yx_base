@@ -1,5 +1,0 @@
-package com.geek.yx.model;
-
-public class Account extends BaseModel{
-	private 
-}

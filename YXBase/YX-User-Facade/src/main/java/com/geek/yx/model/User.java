@@ -57,7 +57,7 @@ public class User extends BaseModel {
 	}
 
 	public String getBirthday() {
-		return birthday==null?"":DateUtil.format(birthday, DATE_PATTERN.YYYY_MM_DD);
+		return birthday==null?null:DateUtil.format(birthday, DATE_PATTERN.YYYY_MM_DD);
 	}
 
 	public void setBirthday(Date birthday) {

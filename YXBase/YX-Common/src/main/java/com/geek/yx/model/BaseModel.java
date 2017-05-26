@@ -15,13 +15,21 @@ import com.geek.yx.common.core.util.DateUtil.DATE_PATTERN;
 public abstract class BaseModel implements Serializable {
 	@TableId(value = "id_", type = IdType.ID_WORKER)
 	private Long id;
-	@TableField("enable_")
+	
+	@TableField(exist = false)
 	private Integer enable;
+	
 	@TableField("remark_")
 	private String remark = "";
+	
+	@TableField(exist = false)
 	private Long createBy;
+	
 	private Date createTime;
+
+	@TableField(exist = false)
 	private Long updateBy;
+	
 	private Date updateTime;
 
 	@TableField(exist = false)
@@ -76,7 +84,7 @@ public abstract class BaseModel implements Serializable {
 	 * @return the createBy
 	 */
 	public Long getCreateBy() {
-		return createBy == null?0:createBy;
+		return createBy;
 		
 	}
 
@@ -107,7 +115,7 @@ public abstract class BaseModel implements Serializable {
 	 * @return the updateBy
 	 */
 	public Long getUpdateBy() {
-		return updateBy == null?0:updateBy;
+		return updateBy;
 	}
 
 	/**

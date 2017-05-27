@@ -1,0 +1,31 @@
+package com.geek.yx.web.info;
+
+import org.springframework.web.bind.annotation.RestController;
+
+import com.geek.yx.bean.InfoBean;
+import com.geek.yx.common.core.base.AbstractController;
+import com.geek.yx.common.core.base.Parameter;
+import com.geek.yx.common.core.support.Assert;
+import com.geek.yx.common.core.vo.BaseResponse;
+import com.geek.yx.common.core.vo.ResultCodeEnum;
+import com.geek.yx.provider.ISnsProvider;
+
+@RestController
+public class InfoController extends AbstractController<ISnsProvider>{
+
+	@Override
+	public String getService() {
+		return "infoService";
+	}
+	
+	public BaseResponse createInfo(InfoBean info){
+		Assert.isNotBlank(info.getUserId(), "USER_ID");
+		Parameter parameter = new Parameter(getService(), "authAccount").setMongoBean(info);;
+		Parameter result = provider.execute(parameter);
+		if(null != result &&  null != result.getBaseResponse()){
+			return result.getBaseResponse();
+		}
+		return new BaseResponse(ResultCodeEnum.SERVER_INTERNAL_ERROR);
+	}
+
+}

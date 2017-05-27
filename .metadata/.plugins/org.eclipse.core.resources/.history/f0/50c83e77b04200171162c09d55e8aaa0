@@ -1,0 +1,16 @@
+package com.geek.yx.web.info;
+
+import org.springframework.web.bind.annotation.RestController;
+
+import com.geek.yx.common.core.base.AbstractController;
+import com.geek.yx.provider.ISnsProvider;
+
+@RestController
+public class InfoController extends AbstractController<ISnsProvider>{
+
+	@Override
+	public String getService() {
+		return "infoService";
+	}
+
+}

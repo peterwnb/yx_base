@@ -1,0 +1,36 @@
+package com.geek.yx.bean;
+
+import java.io.Serializable;
+
+import org.springframework.data.mongodb.core.mapping.Document;
+
+/**
+ * 〈一句话功能简述〉<br>
+ * 微博基本信息
+ * 
+ * @author peter
+ * @see [相关类/方法]（可选）
+ * @since [产品/模块版本] （可选）
+ */
+@Document(collection = "BaseInfo")
+public class InfoBean implements Serializable , Cloneable{
+
+	private static final long serialVersionUID = -2494047220248913239L;
+	
+	private String id;
+	
+	//用户ID（需要建立mongo索引）
+	private String userId;
+	
+	//删除标记
+	private String deleteFlag;
+	
+	//最新消息ID
+	private String newId;
+
+	//是否展示在门店中
+	private String isShowInShop;
+	
+	 // 微博类型
+	private String infoKind;
+}

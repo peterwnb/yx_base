@@ -1,0 +1,9 @@
+package com.geek.yx.bean;
+
+import java.io.Serializable;
+
+public class InfoBean implements Serializable , Cloneable{
+
+	private static final long serialVersionUID = -2494047220248913239L;
+
+}

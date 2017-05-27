@@ -1,0 +1,9 @@
+package com.geek.yx.repository;
+
+import org.springframework.data.mongodb.repository.MongoRepository;
+
+import com.geek.yx.bean.InfoBean;
+
+public interface InfoRepository extends MongoRepository<InfoBean, String>{
+
+}

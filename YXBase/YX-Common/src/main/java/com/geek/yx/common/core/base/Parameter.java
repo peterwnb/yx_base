@@ -9,6 +9,7 @@ import com.baomidou.mybatisplus.toolkit.IdWorker;
 import com.geek.yx.common.core.vo.BaseResponse;
 import com.geek.yx.common.core.vo.ResultObj;
 import com.geek.yx.model.BaseModel;
+import com.geek.yx.model.MongoBean;
 
 /**
  * @author Peter Chain
@@ -47,11 +48,21 @@ public class Parameter implements Serializable {
 
 	private Long id;
 	private BaseModel model;
+	private MongoBean mongoBean;
 	private Map<?, ?> map;
 	private Page<?> page;
 	private List<?> list;
 	private ResultObj result;
 	
+	public MongoBean getMongoBean() {
+		return mongoBean;
+	}
+
+	public Parameter setMongoBean(MongoBean mongoBean) {
+		this.mongoBean = mongoBean;
+		return this;
+	}
+
 	private BaseResponse baseResponse;
 	
     public BaseResponse getBaseResponse() {

@@ -1,0 +1,53 @@
+/*
+ * Copyright (C), 2002-2013, 电子商务有限公司
+ * FileName: MongodbConfiger.java
+ * Author:   12070644@cnsuning.com
+ * Date:     2013-9-27 上午00:00:00
+ */
+package com.geek.yx.core.mongo;
+
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.data.mongodb.core.MongoTemplate;
+
+import com.mongodb.ReadPreference;
+
+/**
+ * Mongodb配置类
+ * 
+ * @author 12070644@cnsuning.com
+ */
+public class MongodbConfiger implements InitializingBean {
+    /**
+     * 
+     */
+    private MongoTemplate mongoTemplate;
+
+    /**
+     * 
+     */
+    private MongoTemplate indexTemplate;
+
+    /**
+     * 
+     */
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        mongoTemplate.setReadPreference(ReadPreference.secondaryPreferred());
+        indexTemplate.setReadPreference(ReadPreference.secondaryPreferred());
+    }
+
+    /**
+     * @param mongoTemplate the mongoTemplate to set
+     */
+    public void setMongoTemplate(MongoTemplate mongoTemplate) {
+        this.mongoTemplate = mongoTemplate;
+    }
+
+    /**
+     * @param indexTemplate the indexTemplate to set
+     */
+    public void setIndexTemplate(MongoTemplate indexTemplate) {
+        this.indexTemplate = indexTemplate;
+    }
+
+}

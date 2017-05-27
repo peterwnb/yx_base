@@ -1,0 +1,7 @@
+package com.geek.yx.bean;
+
+import java.io.Serializable;
+
+public class InfoBean implements Serializable , Cloneable{
+
+}

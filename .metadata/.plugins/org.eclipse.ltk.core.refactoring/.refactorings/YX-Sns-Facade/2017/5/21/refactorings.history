@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete element from project &apos;YX-Sns-Facade&apos;&#x0D;&#x0A;- Original project: &apos;YX-Sns-Facade&apos;&#x0D;&#x0A;- Original element: &apos;YX-Sns-Facade/src/main/java/com.geek.yx.repository&apos;" description="Delete element" element1="/src\/main\/java&lt;com.geek.yx.repository" elements="1" flags="589830" id="org.eclipse.jdt.ui.delete" resources="0" stamp="1495871159883" subPackages="false" version="1.0"/>
+</session>

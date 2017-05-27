@@ -14,6 +14,7 @@ import com.esotericsoftware.reflectasm.MethodAccess;
 import com.geek.yx.common.Constants;
 import com.geek.yx.common.core.util.ExceptionUtil;
 import com.geek.yx.model.BaseModel;
+import com.geek.yx.model.MongoBean;
 
 public abstract class BaseProviderImpl implements ApplicationContextAware, BaseProvider {
     protected static Logger logger = LogManager.getLogger();
@@ -30,8 +31,9 @@ public abstract class BaseProviderImpl implements ApplicationContextAware, BaseP
         try {
             Long id = parameter.getId();
             BaseModel model = parameter.getModel();
+            MongoBean mongoBean = parameter.getMongoBean();
             List<?> list = parameter.getList();
-            Map<?, ?> map = parameter.getMap();
+            Map<?, ?> map = parameter.getMap();	
             Object result = null;
             MethodAccess methodAccess = MethodAccess.get(service.getClass());
             if (id != null) {
@@ -42,7 +44,9 @@ public abstract class BaseProviderImpl implements ApplicationContextAware, BaseP
                 result = methodAccess.invoke(service, parameter.getMethod(), parameter.getList());
             } else if (map != null) {
                 result = methodAccess.invoke(service, parameter.getMethod(), parameter.getMap());
-            } else {
+            } else if(null != mongoBean){
+            	result = methodAccess.invoke(service, parameter.getMethod(), parameter.getMongoBean());
+            }else {
                 result = methodAccess.invoke(service, parameter.getMethod());
             }
             if (result != null) {

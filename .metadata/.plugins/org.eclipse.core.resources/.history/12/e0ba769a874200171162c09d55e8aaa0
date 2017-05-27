@@ -1,0 +1,131 @@
+package com.geek.yx.bean;
+
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import com.geek.yx.model.User;
+
+/**
+ * 〈一句话功能简述〉<br>
+ * 微博基本信息
+ * 
+ * @author peter
+ * @see [相关类/方法]（可选）
+ * @since [产品/模块版本] （可选）
+ */
+@Document(collection = "BaseInfo")
+public class InfoBean implements Serializable, Cloneable {
+
+	private static final long serialVersionUID = -2494047220248913239L;
+
+	@Id
+	private String id;
+
+	// 用户ID（需要建立mongo索引）
+	private String userId;
+
+	// 删除标记
+	private String deleteFlag;
+
+	// 最新消息ID
+	private String newId;
+
+	// 是否展示在门店中
+	private String isShowInShop;
+
+	// 微博类型
+	private String infoKind;
+
+	// 赞数量(FAVOR_COUNT)
+	private Long favorCount;
+
+	// 转发数量(TRANS_COUNT)
+	private Long transCount = 0L;
+
+	// 信息被收藏数量(BOOK_COUNT)
+	private Long bookCount = 0L;
+
+	// 评价数量(EVAL_COUNT)
+	private Long evalCount = 0L;
+
+	// 人们标识
+	private String hotFlag;
+
+	private String newFlag;
+
+	// 发布时的经纬度(CREATE_GPS)
+	private List<Double> createGps;
+
+	// 发布时设备信息
+	private String createDevice;
+
+	// 发布时间(CREATE_TIME)
+	private Date createTime;
+
+	// 信息标题Title
+	private String infoTitle;
+
+	// 信息正文本(INFO_TEXT)
+	private String infoText;
+
+	// 门店ID
+	private String storeId;
+
+	// 门店名称
+	private String storeName;
+
+	// 门店距离
+	private String storeDistance;
+
+	// 商品列表
+	private List<Map<String, Object>> productList;
+
+	// 图片列表
+	private List<Map<String, Object>> imgList;
+
+	// 城市ID
+	private String cityId;
+
+	// 公共帐号发布微博的Url
+	private String publicInfoUrl;
+
+	// 公共帐号图片Url
+	private String publicInfoImgUrl;
+
+	// 公共帐号标题
+	private String publicInfoTitle;
+
+	// 公共帐号文本内容
+	private String publicInfoContent;
+
+	// 当前用户是否赞过 ；不作为字段存储
+	@Transient
+	private Boolean favorFlag;
+	// 当前用户是否收藏过;不作为字段存储
+	@Transient
+	private Boolean bookFlag;
+
+	// 置顶标识 ，1置顶，0不置顶
+	@Transient
+	private String topFlag;
+	// 当前用户是否收藏过;不作为字段存储
+	@Transient
+	private InfoBean forwardMicroblog;
+
+	// 用户信息
+	@Transient
+	private User user;
+
+	// 活动图片地址
+	private String activityImg;
+	// 活动内容描述
+	private String activityContent;
+	// 活动URL地址
+	private String activityUrl;
+}

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"    
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"      
+    xmlns:context="http://www.springframework.org/schema/context"    
+    xmlns:mongo="http://www.springframework.org/schema/data/mongo"    
+    xsi:schemaLocation="http://www.springframework.org/schema/context     
+          http://www.springframework.org/schema/context/spring-context-4.0.xsd     
+          http://www.springframework.org/schema/data/mongo     
+          http://www.springframework.org/schema/data/mongo/spring-mongo-1.8.xsd     
+          http://www.springframework.org/schema/beans   
+          http://www.springframework.org/schema/beans/spring-beans-4.0.xsd ">
+
+	<mongo:mongo-client id="mongo" host="${mongo.replicaSet}" port="${}">
+		<!-- 连接属性 -->
+		<mongo:options connections-per-host="200" 
+			threads-allowed-to-block-for-connection-multiplier="100"
+			connect-timeout="10000" max-wait-time="10000" auto-connect-retry="true"
+			socket-keep-alive="true" socket-timeout="15000" slave-ok="true"
+			write-number="1" write-timeout="0" write-fsync="true" />
+
+	</mongo:mongo-client>
+	<!-- 连接工厂 指定db名 -->
+	<mongo:db-factory id="mongoDbFactory" dbname="${mongo.dbname}"
+		mongo-ref="mongo" username="${mongo.username}" password="${mongo.password}" />
+		
+	<mongo:db-factory id="indexMongoDbFactory" dbname="${index.dbname}"
+		mongo-ref="mongo" username="${index.username}" password="${index.password}" />
+
+	<mongo:db-factory id="fileMongoDbFactory" dbname="${gridfs.dbname}"
+		mongo-ref="mongo" username="${gridfs.username}" password="${gridfs.password}" />
+
+	<!-- 对象映射成mongodb的一个collection的 -->
+	<mongo:mapping-converter id="mongoDbconverter"
+		db-factory-ref="mongoDbFactory" />
+		
+	<mongo:mapping-converter id="indexMongoDbconverter"
+		db-factory-ref="indexMongoDbFactory" />
+
+	<mongo:mapping-converter id="fileMongoDbconverter"
+		db-factory-ref="fileMongoDbFactory" />
+		
+  	<bean id="simpleMongoDbconverter" class="com.geek.yx.core.mongo.ConverterFactoryBean">
+    	<property name="converter" ref="mongoDbconverter" />
+  	</bean>
+  	
+  	<bean id="simpleIndexMongoDbconverter" class="com.geek.yx.core.mongo.ConverterFactoryBean">
+    	<property name="converter" ref="indexMongoDbconverter" />
+  	</bean>
+  	
+  	<bean id="simpleFileMongoDbconverter" class="com.geek.yx.core.mongo.ConverterFactoryBean">
+    	<property name="converter" ref="fileMongoDbconverter" />
+  	</bean>
+	 
+	 <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+		<constructor-arg ref="mongoDbFactory" />
+		<constructor-arg ref="simpleMongoDbconverter" />
+	</bean>
+	 
+	<bean id="mongodbConfiger"
+		class="com.geek.yx.core.mongo.MongodbConfiger">
+		<property name="mongoTemplate" ref="mongoTemplate" />
+		<property name="indexTemplate" ref="indexTemplate" />
+	</bean>
+	
+	<bean id="indexTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+		<constructor-arg ref="indexMongoDbFactory" />
+		<constructor-arg ref="simpleIndexMongoDbconverter" />
+	</bean>
+	
+	<!-- gridfs的操作对象 -->
+	<bean id="gridTemplate" class="org.springframework.data.mongodb.gridfs.GridFsTemplate">
+		<constructor-arg ref="fileMongoDbFactory" />
+		<constructor-arg ref="simpleFileMongoDbconverter" />
+	</bean>
+	<!-- mongodb bean的仓库目录，会自动扫描扩展了MongoRepository接口的接口进行注入 -->
+	<mongo:repositories base-package="com.geek.yx.repository" />
+
+</beans>

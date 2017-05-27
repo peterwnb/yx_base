@@ -1,0 +1,12 @@
+package com.geek.yx.bean;
+
+import java.io.Serializable;
+
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "BaseInfo")
+public class InfoBean implements Serializable , Cloneable{
+
+	private static final long serialVersionUID = -2494047220248913239L;
+
+}

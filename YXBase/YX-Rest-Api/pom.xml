@@ -51,6 +51,18 @@
 			</exclusions>
 		</dependency>
 		
+		<dependency>
+			<groupId>com.geek.yx</groupId>
+			<artifactId>YX-Sns-Facade</artifactId>
+			<version>${project.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>*</groupId>
+					<artifactId>*</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>

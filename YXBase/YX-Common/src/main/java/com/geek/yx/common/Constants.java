@@ -102,4 +102,36 @@ public interface Constants {
     public interface MQ_NAME{
     	public static final String INVITE_MSG = "USER_INVITE_MSG";
     }
+    
+    public interface INFO_KIND{
+    	//朋友圈消息
+        public static final String INFOKIND_FRIENDS = "1";
+
+        //广场微博
+        public static final String INFOKIND_MICROBLG = "2";
+        
+        // 广场微博分享朋友圈
+        public static final String INFOKIND_SHARE = "3";
+    }
+    
+    public interface INFO{
+    	public static final String NEWINFO = "newInfo";
+        
+    	public static final String INFOKIND = "infoKind";
+        
+        public static final String SHARE_MICROBLG_CONTENT = "分享了";
+    	 // 已删除
+        public static final int FLAG_DEL = 1;
+
+        // 未删除
+        public static final int FLAG_NORMAL = 0;
+
+        // 热门微博
+        public static final String HOTFLAG_HOT = "1";
+        // 普通微博
+        public static final String HOTFLAG_NORMAL = "0";
+        
+        //置顶标识，置顶
+        public static final String TOPFLAG_TOP = "1";
+    }
 }
